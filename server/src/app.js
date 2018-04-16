@@ -6,6 +6,7 @@ import morgan from 'morgan'
 const app = express()
 app.use(morgan('combined'))
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors())
 
 var mongoose = require('mongoose');
@@ -15,6 +16,14 @@ db.on('error', console.error.bind(console, 'connection mongo error'));
 db.once('open', function(callback) {
   console.log('connection mongo succeeded');
 })
+
+// Routing
+
+import lessonRoutes from './routes/lessonRoutes';
+
+app.use('/lessons', lessonRoutes);
+
+//Run app
 
 const port = process.env.PORT || 8081;
 app.listen(port, function() {
