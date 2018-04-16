@@ -16,11 +16,7 @@ db.once('open', function(callback) {
   console.log('connection mongo succeeded');
 })
 
-app.get('/posts', (req, res) => {
-  res.send([{
-    title: 'Hello world!',
-    description: 'Hi there'
-  }])
+const port = process.env.PORT || 8081;
+app.listen(port, function() {
+  console.log('Lestening on port ' + port);
 })
-
-app.listen(process.env.PORT || 8081)
