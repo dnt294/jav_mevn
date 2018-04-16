@@ -1,7 +1,7 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-const cors = require('cors')
-const morgan = require('morgan')
+import express from 'express';
+import bodyParser from 'body-parser';
+import cors  from 'cors'
+import morgan from 'morgan'
 
 const app = express()
 app.use(morgan('combined'))
