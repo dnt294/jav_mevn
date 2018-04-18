@@ -9,7 +9,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors())
 
-var mongoose = require('mongoose');
+import mongoose from 'mongoose';
 mongoose.connect('mongodb://localhost:27017/jav_mevn');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection mongo error'));
