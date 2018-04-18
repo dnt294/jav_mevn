@@ -6,4 +6,4 @@ var LessonSchema = new Schema({
   bookName: String
 })
 
-module.exports = mongoose.model('Lesson', LessonSchema);
+export default mongoose.model('Lesson', LessonSchema);

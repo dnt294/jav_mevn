@@ -1,12 +1,11 @@
 import express from 'express';
-const app = express();
 const lessonRoutes = express.Router();
 
-import lesson from '../models/lesson';
+import lesson from '@models/lesson';
 
 lessonRoutes.route('/').get((req, res) => {
   res.json({
-    status: 'ok'
+    status: 'ok fine'
   })
 });
 
@@ -14,4 +13,4 @@ lessonRoutes.route('/').post((req, res) => {
 
 });
 
-module.exports = lessonRoutes;
+export default lessonRoutes;
