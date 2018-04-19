@@ -1,7 +1,7 @@
 import express from 'express';
 const lessonRoutes = express.Router();
 
-import lesson from '@models/lesson';
+import Lesson from '@models/lesson';
 
 lessonRoutes.route('/').get((req, res) => {
   res.json({
@@ -10,7 +10,6 @@ lessonRoutes.route('/').get((req, res) => {
 });
 
 lessonRoutes.route('/').post((req, res) => {
-
 });
 
 export default lessonRoutes;
