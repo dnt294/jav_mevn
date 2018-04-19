@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node --inspect=5858 -r ts-node/register src/app.ts",
+    "start": "node --inspect=5858 -r ts-node/register -r tsconfig-paths/register src/app.ts",
     "dev": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -27,6 +27,7 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-stage-2": "^6.24.1",
     "ts-node": "^6.0.0",
+    "tsconfig-paths": "^3.3.1",
     "tslint": "^5.9.1",
     "typescript": "^2.8.1"
   }
