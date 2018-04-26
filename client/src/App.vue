@@ -1,23 +1,19 @@
-<template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
-  </div>
-</template>
-
 <script>
+import Sidebar from '@/components/layout/sidebar/Sidebar';
+import Header from '@/components/layout/header/Header';
+
 export default {
   name: 'App',
+  components: {
+    Sidebar, Header,
+  },
 };
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+@import '../node_modules/admin-lte/dist/css/AdminLTE.min.css';
+@import '../node_modules/admin-lte/dist/css/skins/_all-skins.css';
 </style>
+
+<template src="./App.html">
