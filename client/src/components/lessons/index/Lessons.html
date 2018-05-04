@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="box box-success">
+      <div class="box-header with-border">
+        <h3 class="box-title">Lessons</h3>
+
+        <div class="box-tools pull-right">
+          <button class="btn btn-box-tool" type="button" data-widget="collapse">
+            <i class="fa fa-minus"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="box-body">
+        <div class="table-responsive">
+          <table class="table no-margin">
+            <thead>
+              <tr>
+                <th style="width: 10%">Index</th>
+                <th style="width: 70%">BookName</th>
+                <th style="width: 20%"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="lesson in lessons" v-if="lesson !== editingLesson">
+                <td>{{lesson.index}}</td>
+                <td>{{lesson.bookName}}</td>
+                <td>
+                  <button class="btn btn-danger btn-flat pull-right" v-on:click="deleteLesson(lesson)">
+                    <i class="fa fa-trash"></i>
+                  </button>
+                  <button class="btn btn-success btn-flat pull-right" v-on:click="editLesson(lesson)" v-if="!isShowCreateForm">
+                    <i class="fa fa-edit"></i>
+                  </button>
+                </td>
+              </tr>
+              <LessonForm v-else v-bind:editingLesson="lesson" v-on:lessonUpdated="lessonUpdated" v-on:cancelForm="cancelForm" />
+              <template v-if="!editingLesson">
+                <LessonForm v-if="isShowCreateForm" v-on:lessonCreated="lessonCreated" v-on:cancelForm="cancelForm" />
+                <td colspan="3" v-else>
+                  <a class="btn btn-info btn-flat pull-right" colspan="3" v-on:click="newLesson">Create New</a>
+                </td>
+              </template>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
