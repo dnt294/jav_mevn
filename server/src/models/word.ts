@@ -15,6 +15,10 @@ var WordSchema = new Schema({
   note: {
     type: String,
   },
+  lesson: {
+    type: Schema.Types.ObjectId,
+    ref: 'Lesson'
+  }
 })
 
 export default mongoose.model('Word', WordSchema);

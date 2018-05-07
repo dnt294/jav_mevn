@@ -4,7 +4,7 @@ const wordRoutes = express.Router();
 import Word from '@models/word';
 
 wordRoutes.route('/').get((req, res) => {
-  Word.find({}, (err, words) => {
+  Word.find({ lesson: req.query.lessonId }, (err, words) => {
     res.json(words);
   });
 });

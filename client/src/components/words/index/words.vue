@@ -6,10 +6,16 @@ export default {
   name: "words",
   data: () => ({
     isShowCreateForm: false,
+    lessons: [],
+    selectingLessonId: null,
     words: [],
     editingWord: null
   }),
   created() {
+    axios.get("lessons").then(response => {
+      this.lessons = response.data;
+      this.selectingLessonId = this.lessons[0]._id;
+    });
     axios.get("words").then(response => {
       this.words = response.data;
     });
@@ -46,6 +52,11 @@ export default {
           );
         });
       }
+    },
+    changeLesson() {
+      axios.get(`words?lessonId=${this.selectingLessonId}`).then(response => {
+        this.words = response.data;
+      });
     }
   }
 };

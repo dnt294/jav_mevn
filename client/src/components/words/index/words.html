@@ -12,6 +12,13 @@
       </div>
 
       <div class="box-body">
+        <div class="form-group">
+          <select class="form-control" v-on:change="changeLesson" v-model="selectingLessonId">
+            <option v-for="lesson in lessons" v-bind:value="lesson._id">
+              {{lesson.bookName}}/{{lesson.index}}
+            </option>
+          </select>
+        </div>
         <div class="table-responsive">
           <table class="table no-margin">
             <thead>
@@ -40,7 +47,8 @@
               </tr>
               <wordForm v-else v-bind:editingWord="word" v-on:wordUpdated="wordUpdated" v-on:cancelForm="cancelForm" />
               <template v-if="!editingWord">
-                <wordForm v-if="isShowCreateForm" v-on:wordCreated="wordCreated" v-on:cancelForm="cancelForm" />
+                <wordForm v-if="isShowCreateForm" v-bind:selectingLessonId="selectingLessonId" v-on:wordCreated="wordCreated" v-on:cancelForm="cancelForm"
+                />
                 <td colspan="5" v-else>
                   <a class="btn btn-info btn-flat pull-right" colspan="3" v-on:click="newWord">Create New</a>
                 </td>

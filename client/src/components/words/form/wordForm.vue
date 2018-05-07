@@ -14,9 +14,12 @@ export default {
   watch: {
     editingWord: function(val) {
       this.input = Object.assign({}, val);
+    },
+    selectingLessonId: function(val) {
+      this.selectingLessonId = val;
     }
   },
-  props: ["editingWord"],
+  props: ["editingWord", "selectingLessonId"],
   created() {
     if (!!this.editingWord) {
       this.input = Object.assign({}, this.editingWord);
@@ -35,7 +38,8 @@ export default {
           hirakata: this.input.hirakata,
           kanji: this.input.kanji,
           imi: this.input.imi,
-          note: this.input.note
+          note: this.input.note,
+          lesson: this.selectingLessonId
         })
         .then(
           response => {
