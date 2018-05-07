@@ -1,0 +1,18 @@
+<tr>
+  <td>
+    <input v-focus type="text" placeholder="Hirakata..." class="form-control" v-model="input.hirakata">
+  </td>
+  <td>
+    <input type="text" placeholder="Kanji..." class="form-control" v-model="input.kanji">
+  </td>
+  <td>
+    <textarea type="text" placeholder="意味..." class="form-control" v-model="input.imi"></textarea>
+  </td>
+  <td>
+    <textarea type="text" placeholder="Note..." class="form-control" v-model="input.note"></textarea>
+  </td>
+  <td>
+    <button class="btn btn-warning btn-flat" v-on:click="submit">Save</button>
+    <button class="btn btn-info btn-flat" v-on:click="cancel">Cancel</button>
+  </td>
+</tr>
