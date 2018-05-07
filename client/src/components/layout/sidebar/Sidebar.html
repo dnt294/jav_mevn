@@ -4,15 +4,25 @@
       <div class="input-group">
         <input type="text" name="q" class="form-control" placeholder="Search...">
         <span class="input-group-btn">
-          <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+          <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+            <i class="fa fa-search"></i>
+          </button>
         </span>
       </div>
     </form>
 
     <ul class="sidebar-menu">
       <li class="header">HEADER</li>
-      <li class="active"><a href="#"><span>Link</span></a><</li>
-      <li><a href="#"><span>Another Link</span></a></li>
+      <router-link tag="li" to="/" active-class="active" exact>
+        <a>
+          <span>Home</span>
+        </a>
+      </router-link>
+      <router-link tag="li" to="/lessons" active-class="active">
+        <a>
+          <span>Lessons</span>
+        </a>
+      </router-link>
     </ul>
   </section>
 </aside>
