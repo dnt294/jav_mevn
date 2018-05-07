@@ -38,7 +38,7 @@ export default {
             this.$emit("lessonCreated", response.data);
           },
           error => {
-            alert(error.message);
+            alert(error.response.data);
           }
         );
     },
@@ -53,7 +53,7 @@ export default {
             this.$emit("lessonUpdated", response.data, this.editingLesson);
           },
           error => {
-            alert(error.message);
+            alert(error.response.data);
           }
         );
     }
