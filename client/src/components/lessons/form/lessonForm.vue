@@ -2,7 +2,7 @@
 import axios from "axios";
 
 export default {
-  name: "LessonForm",
+  name: "lessonForm",
   data: () => ({
     input: {
       index: "",
@@ -61,4 +61,4 @@ export default {
 };
 </script>
 
-<template src='./LessonForm.html'>
+<template src='./lessonForm.html'>

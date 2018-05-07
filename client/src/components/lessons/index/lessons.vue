@@ -1,9 +1,9 @@
 <script>
 import axios from "axios";
-import LessonForm from "../form/LessonForm";
+import lessonForm from "../form/lessonForm";
 
 export default {
-  name: "Lessons",
+  name: "lessons",
   data: () => ({
     isShowCreateForm: false,
     lessons: [],
@@ -15,7 +15,7 @@ export default {
     });
   },
   components: {
-    LessonForm
+    lessonForm
   },
   methods: {
     cancelForm() {
@@ -51,4 +51,4 @@ export default {
 };
 </script>
 
-<template src='./Lessons.html'>
+<template src='./lessons.html'>
