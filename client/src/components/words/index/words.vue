@@ -12,13 +12,16 @@ export default {
     editingWord: null
   }),
   created() {
-    axios.get("lessons").then(response => {
-      this.lessons = response.data;
-      this.selectingLessonId = this.lessons[0]._id;
-    });
-    axios.get("words").then(response => {
-      this.words = response.data;
-    });
+    axios
+      .get("lessons")
+      .then(response => {
+        this.lessons = response.data;
+        this.selectingLessonId = this.lessons[0]._id;
+        return axios.get(`words?lessonId=${this.selectingLessonId}`);
+      })
+      .then(response => {
+        this.words = response.data;
+      });
   },
   components: {
     wordForm
