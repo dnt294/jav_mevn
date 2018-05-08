@@ -1,5 +1,23 @@
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-1">
+    <div class="box">
+      <div class="box-header with-border">
+        <h3 class="box-title">Lesson</h3>
+      </div>
+      <div class="box-body">
+        <div class="table-responsive">
+          <table class="table table-hover no-margin">
+            <tbody>
+              <tr v-for="lesson in lessons" v-on:click="changeLesson(lesson)" v-bind:class="{'selected-row': lesson._id === selectingLessonId}">
+                <td>{{lesson.bookName}}/{{lesson.index}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-11">
     <div class="box box-success">
       <div class="box-header with-border">
         <h3 class="box-title">Words</h3>
@@ -12,13 +30,6 @@
       </div>
 
       <div class="box-body">
-        <div class="form-group">
-          <select class="form-control" v-on:change="changeLesson" v-model="selectingLessonId">
-            <option v-for="lesson in lessons" v-bind:value="lesson._id">
-              {{lesson.bookName}}/{{lesson.index}}
-            </option>
-          </select>
-        </div>
         <div class="table-responsive">
           <table class="table no-margin">
             <thead>

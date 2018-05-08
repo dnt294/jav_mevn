@@ -53,7 +53,8 @@ export default {
         });
       }
     },
-    changeLesson() {
+    changeLesson(lesson) {
+      this.selectingLessonId = lesson._id;
       axios.get(`words?lessonId=${this.selectingLessonId}`).then(response => {
         this.words = response.data;
       });
@@ -62,4 +63,6 @@ export default {
 };
 </script>
 
-<template src='./words.html'>
+<template src='./words.html'></template>
+
+<style scoped src='./words.css'></style>
