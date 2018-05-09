@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node -r ts-node/register -r tsconfig-paths/register src/app.ts",
+    "start": "node dist/app.js",
     "dev": "nodemon",
     "start-dev": "node --inspect=5858 -r ts-node/register -r tsconfig-paths/register src/app.ts",
+    "build": "rimraf dist && npm run build-ts",
+    "build-ts": "tsc && tspath -f ./dist -c tsconfig.path.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -20,6 +22,7 @@
     "nodemon": "^1.17.3"
   },
   "devDependencies": {
+    "@coldmind/tspath": "https://github.com/ShepelievD/tspath",
     "@types/node": "^9.6.5",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
@@ -27,6 +30,7 @@
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-stage-2": "^6.24.1",
+    "rimraf": "^2.6.2",
     "ts-node": "^6.0.0",
     "tsconfig-paths": "^3.3.1",
     "tslint": "^5.9.1",
