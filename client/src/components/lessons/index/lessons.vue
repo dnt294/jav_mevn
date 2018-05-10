@@ -10,7 +10,9 @@ export default {
     editingLesson: null
   }),
   created() {
+    this.$bus.$emit("loading", true);
     axios.get("lessons").then(response => {
+      this.$bus.$emit("loading", false);
       this.lessons = response.data;
     });
   },
@@ -39,7 +41,9 @@ export default {
     deleteLesson(lesson) {
       const result = confirm("Delete this ?");
       if (result) {
+        this.$bus.$emit("loading", true);
         axios.delete(`lessons/${lesson._id}`).then(response => {
+          this.$bus.$emit("loading", false);
           this.lessons.splice(
             this.lessons.findIndex(lesson => lesson._id === response.data._id),
             1

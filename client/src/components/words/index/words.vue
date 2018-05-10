@@ -12,6 +12,7 @@ export default {
     editingWord: null
   }),
   created() {
+    this.$bus.$emit("loading", true);
     axios
       .get("lessons")
       .then(response => {
@@ -20,6 +21,7 @@ export default {
         return axios.get(`words?lessonId=${this.selectingLessonId}`);
       })
       .then(response => {
+        this.$bus.$emit("loading", false);
         this.words = response.data;
       });
   },
@@ -48,7 +50,9 @@ export default {
     deleteWord(word) {
       const result = confirm("Delete this ?");
       if (result) {
+        this.$bus.$emit("loading", true);
         axios.delete(`words/${word._id}`).then(response => {
+          this.$bus.$emit("loading", false);
           this.words.splice(
             this.words.findIndex(word => word._id === response.data._id),
             1
@@ -58,7 +62,9 @@ export default {
     },
     changeLesson(lesson) {
       this.selectingLessonId = lesson._id;
+      this.$bus.$emit("loading", true);
       axios.get(`words?lessonId=${this.selectingLessonId}`).then(response => {
+        this.$bus.$emit("loading", false);
         this.words = response.data;
       });
     }

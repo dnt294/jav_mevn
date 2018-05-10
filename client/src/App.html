@@ -4,6 +4,9 @@
     <Sidebar/>
     <section class="content">
       <router-view/>
+      <div class="spinner" v-if="isLoading">
+        <atom-spinner :size="160" :color="'#ff1d5e'"></atom-spinner>
+      </div>
     </section>
   </div>
   <footer class="main-footer"></footer>

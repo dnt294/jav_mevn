@@ -33,6 +33,7 @@ export default {
       this.$emit("cancelForm");
     },
     createWord() {
+      this.$bus.$emit("loading", true);
       axios
         .post("words", {
           hirakata: this.input.hirakata,
@@ -43,14 +44,17 @@ export default {
         })
         .then(
           response => {
+            this.$bus.$emit("loading", false);
             this.$emit("wordCreated", response.data);
           },
           error => {
+            this.$bus.$emit("loading", false);
             alert(error.response.data);
           }
         );
     },
     updateWord() {
+      this.$bus.$emit("loading", true);
       axios
         .patch(`words/${this.editingWord._id}`, {
           hirakata: this.input.hirakata,
@@ -60,9 +64,11 @@ export default {
         })
         .then(
           response => {
+            this.$bus.$emit("loading", false);
             this.$emit("wordUpdated", response.data, this.editingWord);
           },
           error => {
+            this.$bus.$emit("loading", false);
             alert(error.response.data);
           }
         );
