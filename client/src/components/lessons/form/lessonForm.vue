@@ -28,6 +28,7 @@ export default {
       this.$emit("cancelForm");
     },
     createLesson() {
+      this.$bus.$emit("loading", true);
       axios
         .post("lessons", {
           index: this.input.index,
@@ -35,14 +36,17 @@ export default {
         })
         .then(
           response => {
+            this.$bus.$emit("loading", false);
             this.$emit("lessonCreated", response.data);
           },
           error => {
+            this.$bus.$emit("loading", false);
             alert(error.response.data);
           }
         );
     },
     updateLesson() {
+      this.$bus.$emit("loading", true);
       axios
         .patch(`lessons/${this.editingLesson._id}`, {
           index: this.input.index,
@@ -50,9 +54,11 @@ export default {
         })
         .then(
           response => {
+            this.$bus.$emit("loading", false);
             this.$emit("lessonUpdated", response.data, this.editingLesson);
           },
           error => {
+            this.$bus.$emit("loading", false);
             alert(error.response.data);
           }
         );
