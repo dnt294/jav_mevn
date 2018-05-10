@@ -3,6 +3,8 @@ import bodyParser from 'body-parser';
 import cors from 'cors'
 import morgan from 'morgan'
 
+require('dotenv').config()
+
 const app = express()
 app.use(morgan('combined'))
 app.use(bodyParser.json())
@@ -10,7 +12,10 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors())
 
 import mongoose from 'mongoose';
-mongoose.connect('mongodb://localhost:27017/jav_mevn');
+
+const mongoDBHost = (app.get('env') === 'development') ? 'mongodb://localhost:27017/jav_mevn' : process.env.MONGODB;
+
+mongoose.connect(mongoDBHost);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection mongo error'));
 db.once('open', function (callback) {
