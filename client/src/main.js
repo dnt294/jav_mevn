@@ -12,7 +12,7 @@ Vue.config.productionTip = false;
 import { Focus } from './directives/directive.module';
 
 /** Config for axios  */
-axios.defaults.baseURL = 'http://localhost:8081';
+axios.defaults.baseURL = process.env.BACKEND_ENDPOINT;
 
 /* eslint-disable no-new */
 new Vue({
