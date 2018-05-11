@@ -1,29 +1,17 @@
 <script>
 import Vue from "vue";
 import { AtomSpinner } from "epic-spinners";
+import { mapState } from "vuex";
+
+import store from "@/store/store";
 
 import Sidebar from "@/components/layout/sidebar/Sidebar";
 import Header from "@/components/layout/header/Header";
 
-const EventBus = new Vue();
-Object.defineProperties(Vue.prototype, {
-  $bus: {
-    get: function() {
-      return EventBus;
-    }
-  }
-});
-
 export default {
   name: "App",
-  data: () => ({
-    isLoading: false
-  }),
-  created() {
-    this.$bus.$on("loading", $event => {
-      this.isLoading = $event;
-    });
-  },
+  store,
+  computed: mapState(["isLoading"]),
   components: {
     Sidebar,
     Header,

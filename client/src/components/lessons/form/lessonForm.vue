@@ -1,5 +1,9 @@
 <script>
-import axios from "axios";
+import { createNamespacedHelpers } from "vuex";
+
+const { mapState, mapActions, mapMutations } = createNamespacedHelpers(
+  "lessonsModule"
+);
 
 export default {
   name: "lessonForm",
@@ -9,60 +13,21 @@ export default {
       bookName: ""
     }
   }),
-  watch: {
-    editingLesson: function(val) {
-      this.input = Object.assign({}, val);
-    }
-  },
-  props: ["editingLesson"],
+  computed: mapState(["editingLesson"]),
   created() {
-    if (!!this.editingLesson) {
-      this.input = Object.assign({}, this.editingLesson);
-    }
+    this.input = Object.assign(
+      {},
+      this.$store.getters["lessonsModule/inputForm"]
+    );
   },
   methods: {
     submit() {
-      !!this.editingLesson ? this.updateLesson() : this.createLesson();
+      !!this.editingLesson
+        ? this.updateLesson(this.input)
+        : this.createLesson(this.input);
     },
-    cancel() {
-      this.$emit("cancelForm");
-    },
-    createLesson() {
-      this.$bus.$emit("loading", true);
-      axios
-        .post("lessons", {
-          index: this.input.index,
-          bookName: this.input.bookName
-        })
-        .then(
-          response => {
-            this.$bus.$emit("loading", false);
-            this.$emit("lessonCreated", response.data);
-          },
-          error => {
-            this.$bus.$emit("loading", false);
-            alert(error.response.data);
-          }
-        );
-    },
-    updateLesson() {
-      this.$bus.$emit("loading", true);
-      axios
-        .patch(`lessons/${this.editingLesson._id}`, {
-          index: this.input.index,
-          bookName: this.input.bookName
-        })
-        .then(
-          response => {
-            this.$bus.$emit("loading", false);
-            this.$emit("lessonUpdated", response.data, this.editingLesson);
-          },
-          error => {
-            this.$bus.$emit("loading", false);
-            alert(error.response.data);
-          }
-        );
-    }
+    ...mapMutations(["cancelForm"]),
+    ...mapActions(["createLesson", "updateLesson"])
   }
 };
 </script>

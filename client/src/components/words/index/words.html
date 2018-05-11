@@ -8,7 +8,7 @@
         <div class="table-responsive">
           <table class="table table-hover no-margin">
             <tbody>
-              <tr v-for="lesson in lessons" v-on:click="changeLesson(lesson)" v-bind:class="{'selected-row': lesson._id === selectingLessonId}">
+              <tr v-for="lesson in lessons" v-on:click="changeLesson(lesson._id)" v-bind:class="{'selected-row': lesson._id === selectingLessonId}">
                 <td>{{lesson.bookName}}/{{lesson.index}}</td>
               </tr>
             </tbody>
@@ -48,7 +48,7 @@
                 <td>{{word.imi}}</td>
                 <td>{{word.note}}</td>
                 <td>
-                  <button class="btn btn-danger btn-flat pull-right" v-on:click="deleteWord(word)">
+                  <button class="btn btn-danger btn-flat pull-right" v-on:click="deleteWord(word._id)">
                     <i class="fa fa-trash"></i>
                   </button>
                   <button class="btn btn-success btn-flat pull-right" v-on:click="editWord(word)" v-if="!isShowCreateForm">
@@ -56,10 +56,9 @@
                   </button>
                 </td>
               </tr>
-              <wordForm v-else v-bind:editingWord="word" v-on:wordUpdated="wordUpdated" v-on:cancelForm="cancelForm" />
+              <wordForm v-else />
               <template v-if="!editingWord">
-                <wordForm v-if="isShowCreateForm" v-bind:selectingLessonId="selectingLessonId" v-on:wordCreated="wordCreated" v-on:cancelForm="cancelForm"
-                />
+                <wordForm v-if="isShowCreateForm" />
                 <td colspan="5" v-else>
                   <a class="btn btn-info btn-flat pull-right" colspan="3" v-on:click="newWord">Create New</a>
                 </td>

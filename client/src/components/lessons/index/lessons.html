@@ -26,7 +26,7 @@
                 <td>{{lesson.index}}</td>
                 <td>{{lesson.bookName}}</td>
                 <td>
-                  <button class="btn btn-danger btn-flat pull-right" v-on:click="deleteLesson(lesson)">
+                  <button class="btn btn-danger btn-flat pull-right" v-on:click="deleteLesson(lesson._id)">
                     <i class="fa fa-trash"></i>
                   </button>
                   <button class="btn btn-success btn-flat pull-right" v-on:click="editLesson(lesson)" v-if="!isShowCreateForm">
@@ -34,9 +34,9 @@
                   </button>
                 </td>
               </tr>
-              <lessonForm v-else v-bind:editingLesson="lesson" v-on:lessonUpdated="lessonUpdated" v-on:cancelForm="cancelForm" />
+              <lessonForm v-else />
               <template v-if="!editingLesson">
-                <lessonForm v-if="isShowCreateForm" v-on:lessonCreated="lessonCreated" v-on:cancelForm="cancelForm" />
+                <lessonForm v-if="isShowCreateForm" />
                 <td colspan="3" v-else>
                   <a class="btn btn-info btn-flat pull-right" colspan="3" v-on:click="newLesson">Create New</a>
                 </td>
