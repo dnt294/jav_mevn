@@ -23,8 +23,8 @@
             </thead>
             <tbody>
               <tr v-for="lesson in lessons" v-if="lesson !== editingLesson">
-                <td>{{lesson.index}}</td>
-                <td>{{lesson.bookName}}</td>
+                <td class="big-cell-text">{{lesson.index}}</td>
+                <td class="big-cell-text">{{lesson.bookName}}</td>
                 <td>
                   <button class="btn btn-danger btn-flat pull-right" v-on:click="deleteLesson(lesson._id)">
                     <i class="fa fa-trash"></i>

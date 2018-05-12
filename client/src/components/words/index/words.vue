@@ -36,4 +36,4 @@ export default {
 
 <template src='./words.html'></template>
 
-<style scoped src='./words.css'></style>
+<style scoped src='./words.scss'></style>

@@ -23,16 +23,6 @@ export default {
 };
 </script>
 
-<style>
-@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-@import "../node_modules/admin-lte/dist/css/AdminLTE.min.css";
-@import "../node_modules/admin-lte/dist/css/skins/_all-skins.css";
-
-.spinner {
-  position: absolute;
-  top: 30%;
-  left: 50%;
-}
-</style>
+<style src='./App.scss'></style>
 
 <template src="./App.html">
