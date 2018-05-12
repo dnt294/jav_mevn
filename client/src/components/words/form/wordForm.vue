@@ -1,5 +1,9 @@
 <script>
-import axios from "axios";
+import { createNamespacedHelpers } from "vuex";
+
+const { mapState, mapActions, mapMutations } = createNamespacedHelpers(
+  "wordsModule"
+);
 
 export default {
   name: "wordForm",
@@ -11,68 +15,21 @@ export default {
       note: ""
     }
   }),
-  watch: {
-    editingWord: function(val) {
-      this.input = Object.assign({}, val);
-    },
-    selectingLessonId: function(val) {
-      this.selectingLessonId = val;
-    }
-  },
-  props: ["editingWord", "selectingLessonId"],
+  computed: mapState(["editingWord"]),
   created() {
-    if (!!this.editingWord) {
-      this.input = Object.assign({}, this.editingWord);
-    }
+    this.input = Object.assign(
+      {},
+      this.$store.getters["wordsModule/inputForm"]
+    );
   },
   methods: {
     submit() {
-      !!this.editingWord ? this.updateWord() : this.createWord();
+      !!this.editingWord
+        ? this.updateWord(this.input)
+        : this.createWord(this.input);
     },
-    cancel() {
-      this.$emit("cancelForm");
-    },
-    createWord() {
-      this.$bus.$emit("loading", true);
-      axios
-        .post("words", {
-          hirakata: this.input.hirakata,
-          kanji: this.input.kanji,
-          imi: this.input.imi,
-          note: this.input.note,
-          lesson: this.selectingLessonId
-        })
-        .then(
-          response => {
-            this.$bus.$emit("loading", false);
-            this.$emit("wordCreated", response.data);
-          },
-          error => {
-            this.$bus.$emit("loading", false);
-            alert(error.response.data);
-          }
-        );
-    },
-    updateWord() {
-      this.$bus.$emit("loading", true);
-      axios
-        .patch(`words/${this.editingWord._id}`, {
-          hirakata: this.input.hirakata,
-          kanji: this.input.kanji,
-          imi: this.input.imi,
-          note: this.input.note
-        })
-        .then(
-          response => {
-            this.$bus.$emit("loading", false);
-            this.$emit("wordUpdated", response.data, this.editingWord);
-          },
-          error => {
-            this.$bus.$emit("loading", false);
-            alert(error.response.data);
-          }
-        );
-    }
+    ...mapMutations(["cancelForm"]),
+    ...mapActions(["createWord", "updateWord"])
   }
 };
 </script>
