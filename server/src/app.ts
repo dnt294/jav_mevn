@@ -15,7 +15,9 @@ import mongoose from 'mongoose';
 
 const mongoDBHost = (app.get('env') === 'development') ? 'mongodb://localhost:27017/jav_mevn' : process.env.MONGODB;
 
-mongoose.connect(mongoDBHost);
+mongoose.connect(mongoDBHost)
+  .then(connection => console.log('Connected to MongoDB'))
+  .catch(error => console.log(error.message));
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection mongo error'));
 db.once('open', function (callback) {
