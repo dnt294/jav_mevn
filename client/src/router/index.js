@@ -3,6 +3,7 @@ import Router from 'vue-router';
 
 import lessons from '@/components/lessons/index/lessons';
 import words from '@/components/words/index/words';
+import tags from '@/components/tags/index/tags';
 
 Vue.use(Router);
 
@@ -11,5 +12,6 @@ export default new Router({
   routes: [
     { path: '/lessons', component: lessons },
     { path: '/words', component: words },
+    { path: '/tags', component: tags },
   ],
 });

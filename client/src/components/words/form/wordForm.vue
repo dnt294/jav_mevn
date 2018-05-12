@@ -5,6 +5,8 @@ const { mapState, mapActions, mapMutations } = createNamespacedHelpers(
   "wordsModule"
 );
 
+const tagsModule = createNamespacedHelpers("tagsModule");
+
 export default {
   name: "wordForm",
   data: () => ({
@@ -12,10 +14,14 @@ export default {
       hirakata: "",
       kanji: "",
       imi: "",
-      note: ""
+      note: "",
+      tags: null
     }
   }),
-  computed: mapState(["editingWord"]),
+  computed: {
+    ...mapState(["editingWord"]),
+    ...tagsModule.mapState(["tags"])
+  },
   created() {
     this.input = Object.assign(
       {},

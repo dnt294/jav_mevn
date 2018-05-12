@@ -109,7 +109,8 @@ const getters = {
     hirakata: "",
     kanji: "",
     imi: "",
-    note: ""
+    note: "",
+    tags: null
   }
 }
 

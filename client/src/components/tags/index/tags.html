@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="box box-success">
+      <div class="box-header with-border">
+        <h3 class="box-title">Tags</h3>
+
+        <div class="box-tools pull-right">
+          <button class="btn btn-box-tool" type="button" data-widget="collapse">
+            <i class="fa fa-minus"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="box-body">
+        <div class="table-responsive">
+          <table class="table no-margin">
+            <thead>
+              <tr>
+                <th style="width: 40%">Text</th>
+                <th style="width: 40%">Type</th>
+                <th style="width: 20%"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="tag in tags" v-if="tag !== editingTag">
+                <td>{{tag.text}}</td>
+                <td>{{tag.type}}</td>
+                <td>
+                  <button class="btn btn-danger btn-flat pull-right" v-on:click="deleteTag(tag._id)">
+                    <i class="fa fa-trash"></i>
+                  </button>
+                  <button class="btn btn-success btn-flat pull-right" v-on:click="editTag(tag)" v-if="!isShowCreateForm">
+                    <i class="fa fa-edit"></i>
+                  </button>
+                </td>
+              </tr>
+              <tagForm v-else />
+              <template v-if="!editingTag">
+                <tagForm v-if="isShowCreateForm" />
+                <td colspan="3" v-else>
+                  <a class="btn btn-info btn-flat pull-right" colspan="3" v-on:click="newTag">Create New</a>
+                </td>
+              </template>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
