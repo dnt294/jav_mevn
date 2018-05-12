@@ -12,6 +12,7 @@ import wordForm from "../form/wordForm";
 export default {
   name: "words",
   created() {
+    this.$store.dispatch("tagsModule/getTags");
     this.$store.dispatch("wordsModule/fetchLessons");
   },
   computed: {

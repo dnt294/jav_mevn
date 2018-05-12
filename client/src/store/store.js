@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 
 import lessonsModule from './lessons.module';
 import wordsModule from './words.module';
+import tagsModule from './tags.module';
 
 Vue.use(Vuex);
 
@@ -24,6 +25,7 @@ export default new Vuex.Store({
   mutations,
   modules: {
     lessonsModule,
+    tagsModule,
     wordsModule
   }
 });

@@ -37,7 +37,8 @@
                 <th style="width: 15%">Hirakata</th>
                 <th style="width: 15%">Kanji</th>
                 <th style="width: 25%">意味</th>
-                <th style="width: 25%">Note</th>
+                <th style="width: 15%">Note</th>
+                <th style="width: 15%">Tags</th>
                 <th style="width: 20%"></th>
               </tr>
             </thead>
@@ -47,6 +48,11 @@
                 <td>{{word.kanji}}</td>
                 <td>{{word.imi}}</td>
                 <td>{{word.note}}</td>
+                <td>
+                  <div v-if="word.tags">
+                    <p v-for="tag in word.tags">{{tag.text}}</p>
+                  </div>
+                </td>
                 <td>
                   <button class="btn btn-danger btn-flat pull-right" v-on:click="deleteWord(word._id)">
                     <i class="fa fa-trash"></i>

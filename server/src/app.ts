@@ -28,9 +28,11 @@ db.once('open', function (callback) {
 
 import lessonRoutes from './routes/lessonRoutes';
 import wordRoutes from './routes/wordRoutes';
+import tagRoutes from './routes/tagRoutes';
 
 app.use('/lessons', lessonRoutes);
 app.use('/words', wordRoutes);
+app.use('/tags', tagRoutes);
 
 //Run app
 
