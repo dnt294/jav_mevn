@@ -1,12 +1,17 @@
 <script>
-import { mapState } from "vuex";
+import { createNamespacedHelpers } from "vuex";
+
+const { mapState, mapActions, mapMutations } = createNamespacedHelpers(
+  "tagsModule"
+);
 import tagForm from "../form/tagForm";
+
 export default {
   name: "tags",
   created() {
     this.$store.dispatch("tagsModule/getTags");
   },
-  computed: mapState("tagsModule", ["tags", "isShowCreateForm", "editingTag"]),
+  computed: mapState(["tags", "isShowCreateForm", "editingTag"]),
   components: {
     tagForm
   },
