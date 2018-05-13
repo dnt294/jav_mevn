@@ -1,31 +1,21 @@
-<tr>
-  <td colspan="5">
-    <div class="row">
-      <div class="col-md-2">
-        <input v-focus type="text" placeholder="Hirakata..." class="form-control" v-model="input.hirakata">
-      </div>
-      <div class="col-md-2">
-        <input type="text" placeholder="Kanji..." class="form-control" v-model="input.kanji">
-      </div>
-      <div class="col-md-3">
-        <textarea type="text" placeholder="意味..." class="form-control" v-model="input.imi"></textarea>
-      </div>
-      <div class="col-md-4">
-        <textarea type="text" placeholder="Note..." class="form-control" v-model="input.note"></textarea>
-      </div>
-      <div class="col-md-1 btn-group">
-        <button class="btn btn-warning btn-flat" v-on:click="submit">
-          <i class="fa fa-save"></i>
-        </button>
-        <button class="btn btn-info btn-flat" v-on:click="cancelForm">
-          <i class="fa fa-ban"></i>
-        </button>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        <v-select multiple :options="tags" label="text" v-model="input.tags"></v-select>
-      </div>
-    </div>
-  </td>
-</tr>
+<div class="row divRow">
+  <div class="col-md-2 Cell">
+    <input v-focus type="text" placeholder="Hirakata..." class="form-control" v-model="input.hirakata">
+  </div>
+  <div class="col-md-2 Cell">
+    <input type="text" placeholder="Kanji..." class="form-control" v-model="input.kanji">
+  </div>
+  <div class="col-md-3 Cell">
+    <textarea type="text" placeholder="意味..." class="form-control" v-model="input.imi"></textarea>
+  </div>
+  <div class="col-md-3 Cell">
+    <textarea type="text" placeholder="Note..." class="form-control" v-model="input.note"></textarea>
+  </div>
+  <div class="col-md-2 Cell">
+    <button class="btn btn-warning btn-flat" v-on:click="submit">Save</button>
+    <button class="btn btn-info btn-flat" v-on:click="cancelForm">Cancel</button>
+  </div>
+  <div class="col-md-6 Cell">
+    <v-select multiple :options="tags" label="text" v-model="input.tags"></v-select>
+  </div>
+</div>

@@ -12,37 +12,33 @@
       </div>
 
       <div class="box-body">
-        <div class="table-responsive">
-          <table class="table no-margin">
-            <thead>
-              <tr>
-                <th style="width: 10%">Index</th>
-                <th style="width: 70%">BookName</th>
-                <th style="width: 20%"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="lesson in lessons" v-if="lesson !== editingLesson">
-                <td class="big-cell-text">{{lesson.index}}</td>
-                <td class="big-cell-text">{{lesson.bookName}}</td>
-                <td>
-                  <button class="btn btn-danger btn-flat pull-right" v-on:click="deleteLesson(lesson._id)">
-                    <i class="fa fa-trash"></i>
-                  </button>
-                  <button class="btn btn-success btn-flat pull-right" v-on:click="editLesson(lesson)" v-if="!isShowCreateForm">
-                    <i class="fa fa-edit"></i>
-                  </button>
-                </td>
-              </tr>
-              <lessonForm v-else />
-              <template v-if="!editingLesson">
-                <lessonForm v-if="isShowCreateForm" />
-                <td colspan="3" v-else>
-                  <a class="btn btn-info btn-flat pull-right" colspan="3" v-on:click="newLesson">Create New</a>
-                </td>
-              </template>
-            </tbody>
-          </table>
+        <div class="divTable">
+          <div class="row divHeading">
+            <div class="col-md-5 Cell">Index</div>
+            <div class="col-md-5 Cell">BookName</div>
+            <div class="col-md-2 Cell"></div>
+          </div>
+          <div class="row divRow" v-for="lesson in lessons" v-if="lesson !== editingLesson">
+            <div class="col-md-5 Cell">{{lesson.index}}</div>
+            <div class="col-md-5 Cell">{{lesson.bookName}}</div>
+            <div class="col-md-2 Cell">
+              <button class="btn btn-danger btn-flat pull-right" v-on:click="deleteLesson(lesson._id)">
+                <i class="fa fa-trash"></i>
+              </button>
+              <button class="btn btn-success btn-flat pull-right" v-on:click="editLesson(lesson)" v-if="!isShowCreateForm">
+                <i class="fa fa-edit"></i>
+              </button>
+            </div>
+          </div>
+          <lessonForm v-else />
+          <template v-if="!editingLesson">
+            <lessonForm v-if="isShowCreateForm" />
+            <div class="row divRow" v-else>
+              <div class="col-md-2 col-md-offset-10 Cell">
+                <a class="btn btn-info btn-flat pull-right" colspan="3" v-on:click="newLesson">Create New</a>
+              </div>
+            </div>
+          </template>
         </div>
       </div>
     </div>

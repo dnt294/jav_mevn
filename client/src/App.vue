@@ -23,6 +23,6 @@ export default {
 };
 </script>
 
-<style src='./App.scss'></style>
+<style lang="scss" src='./App.scss'></style>
 
 <template src="./App.html">

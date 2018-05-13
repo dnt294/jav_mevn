@@ -10,15 +10,11 @@
           </button>
         </div>
       </div>
-      <div class="box-body">
-        <div class="table-responsive fixed-table">
-          <table class="table table-hover no-margin">
-            <tbody>
-              <tr v-for="lesson in lessons" v-on:click="changeLesson(lesson._id)" v-bind:class="{'selected-row': lesson._id === selectingLessonId}">
-                <td class="big-cell-text">{{lesson.bookName}}/{{lesson.index}}</td>
-              </tr>
-            </tbody>
-          </table>
+      <div class="box-body fixed-table">
+        <div class="divTable">
+          <div class="row divRow" v-for="lesson in lessons" v-on:click="changeLesson(lesson._id)" v-bind:class="{'selected-row': lesson._id === selectingLessonId}">
+            <div class="Cell big-cell-text">{{lesson.bookName}}/{{lesson.index}}</div>
+          </div>
         </div>
       </div>
     </div>
@@ -35,48 +31,44 @@
         </div>
       </div>
 
-      <div class="box-body">
-        <div class="table-responsive fixed-table">
-          <table class="table no-margin">
-            <thead>
-              <tr>
-                <th style="width: 15%">Hirakata</th>
-                <th style="width: 15%">Kanji</th>
-                <th style="width: 25%">意味</th>
-                <th style="width: 15%">Note</th>
-                <th style="width: 15%">Tags</th>
-                <th style="width: 20%"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="word in words" v-if="word !== editingWord">
-                <td class="big-cell-text">{{word.hirakata}}</td>
-                <td class="big-cell-text">{{word.kanji}}</td>
-                <td class="big-cell-text">{{word.imi}}</td>
-                <td class="big-cell-text">{{word.note}}</td>
-                <td>
-                  <div v-if="word.tags">
-                    <p v-for="tag in word.tags">{{tag.text}}</p>
-                  </div>
-                </td>
-                <td>
-                  <button class="btn btn-danger btn-flat pull-right" v-on:click="deleteWord(word._id)">
-                    <i class="fa fa-trash"></i>
-                  </button>
-                  <button class="btn btn-success btn-flat pull-right" v-on:click="editWord(word)" v-if="!isShowCreateForm">
-                    <i class="fa fa-edit"></i>
-                  </button>
-                </td>
-              </tr>
-              <wordForm v-else />
-              <template v-if="!editingWord">
-                <wordForm v-if="isShowCreateForm" />
-                <td colspan="5" v-else>
-                  <a class="btn btn-info btn-flat pull-right" colspan="3" v-on:click="newWord">Create New</a>
-                </td>
-              </template>
-            </tbody>
-          </table>
+      <div class="box-body fixed-table">
+        <div class="divTable">
+          <div class="row divHeading">
+            <div class="col-md-2 Cell">Hirakata</div>
+            <div class="col-md-2 Cell">Kanji</div>
+            <div class="col-md-2 Cell">意味</div>
+            <div class="col-md-2 Cell">Note</div>
+            <div class="col-md-2 Cell">Tags</div>
+            <div class="col-md-2 Cell"></div>
+          </div>
+          <div class="row divRow" v-for="word in words" v-if="word !== editingWord">
+            <div class="col-md-2 Cell">{{word.hirakata}}</div>
+            <div class="col-md-2 Cell">{{word.kanji}}</div>
+            <div class="col-md-2 Cell">{{word.imi}}</div>
+            <div class="col-md-2 Cell">{{word.note}}</div>
+            <div class="col-md-3 col-sm-2 Cell">
+              <div v-if="word.tags">
+                <p v-for="tag in word.tags">{{tag.text}}</p>
+              </div>
+            </div>
+            <div class="col-md-1 col-sm-2 Cell">
+              <button class="btn btn-danger btn-flat pull-right" v-on:click="deleteWord(word._id)">
+                <i class="fa fa-trash"></i>
+              </button>
+              <button class="btn btn-success btn-flat pull-right" v-on:click="editWord(word)" v-if="!isShowCreateForm">
+                <i class="fa fa-edit"></i>
+              </button>
+            </div>
+          </div>
+          <wordForm v-else />
+          <template v-if="!editingWord">
+            <wordForm v-if="isShowCreateForm" />
+            <div class="row divRow" v-else>
+              <div class="col-md-2 col-md-offset-10 Cell">
+                <a class="btn btn-info btn-flat pull-right" colspan="3" v-on:click="newWord">Create New</a>
+              </div>
+            </div>
+          </template>
         </div>
       </div>
     </div>
