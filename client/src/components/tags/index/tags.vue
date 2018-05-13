@@ -9,7 +9,7 @@ import tagForm from "../form/tagForm";
 export default {
   name: "tags",
   created() {
-    this.$store.dispatch("tagsModule/getTags");
+    this.$store.dispatch("tagsModule/fetchTags");
   },
   computed: mapState(["tags", "isShowCreateForm", "editingTag"]),
   components: {

@@ -10,7 +10,7 @@ import lessonForm from "../form/lessonForm";
 export default {
   name: "lessons",
   created() {
-    this.$store.dispatch("lessonsModule/getLessons");
+    this.$store.dispatch("lessonsModule/fetchLessons");
   },
   computed: mapState(["lessons", "isShowCreateForm", "editingLesson"]),
   components: {

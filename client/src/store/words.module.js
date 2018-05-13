@@ -39,14 +39,14 @@ const mutations = {
 };
 
 const actions = {
-  fetchLessons(context) {
-    if (context.rootState.lessonsModule.lessons.length === 0) {
-      context.dispatch('lessonsModule/getLessons', null, { root: true })
-        .then(next => {
-          context.dispatch('changeLesson', context.rootState.lessonsModule.lessons[0]._id);
-        });
-    } else {
+  async fetchFirstWords(context) {
+    try {
+      await context.dispatch('lessonsModule/fetchLessons', null, { root: true });
+
+      if (context.rootState.lessonsModule.lessons.length === 0) { return; }
       context.dispatch('changeLesson', context.rootState.lessonsModule.lessons[0]._id);
+    } catch (error) {
+      return Promise.reject(error);
     }
   },
   changeLesson(context, lessonId) {

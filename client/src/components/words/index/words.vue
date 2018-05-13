@@ -12,8 +12,8 @@ import wordForm from "../form/wordForm";
 export default {
   name: "words",
   created() {
-    this.$store.dispatch("tagsModule/getTags");
-    this.$store.dispatch("wordsModule/fetchLessons");
+    this.$store.dispatch("tagsModule/fetchTags");
+    this.$store.dispatch("wordsModule/fetchFirstWords");
   },
   computed: {
     ...mapState([

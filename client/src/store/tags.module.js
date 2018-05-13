@@ -35,15 +35,19 @@ const mutations = {
 };
 
 const actions = {
-  getTags(context) {
+  fetchTags(context) {
+    if (context.state.tags.length > 0) { return; }
     context.commit('loading', null, { root: true });
+
     return TagsService.getTags()
       .then(response => {
         context.commit('notLoading', null, { root: true });
         context.commit({ type: 'setTags', tags: response.data });
+        return response;
       }).catch(error => {
         context.commit('notLoading', null, { root: true });
         alert(error.response.data);
+        return Promise.reject(error);
       });
   },
   createTag(context, input) {
@@ -52,21 +56,26 @@ const actions = {
       .then(response => {
         context.commit('notLoading', null, { root: true });
         context.commit({ type: 'tagCreated', tag: response.data });
+        return response;
       }).catch(error => {
         context.commit('notLoading', null, { root: true });
         alert(error.response.data);
+        return Promise.reject(error);
       });
   },
   updateTag(context, input) {
     context.commit('loading', null, { root: true });
     const tagId = context.state.editingTag._id;
+
     TagsService.updateTag(tagId, input)
       .then(response => {
         context.commit('notLoading', null, { root: true });
         context.commit({ type: 'tagUpdated', tag: response.data });
+        return response;
       }).catch(error => {
         context.commit('notLoading', null, { root: true });
         alert(error.response.data);
+        return Promise.reject(error);
       });
   },
   deleteTag(context, tagId) {
@@ -77,9 +86,11 @@ const actions = {
         .then((response) => {
           context.commit('notLoading', null, { root: true });
           context.commit({ type: 'deleteTag', tag: response.data });
+          return response;
         }).catch(error => {
           context.commit('notLoading', null, { root: true });
           alert(error.response.data);
+          return Promise.reject(error);
         });
     }
   }

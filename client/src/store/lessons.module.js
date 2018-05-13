@@ -35,26 +35,33 @@ const mutations = {
 };
 
 const actions = {
-  getLessons(context) {
+  fetchLessons(context) {
+    if (state.lessons.length > 0) { return; }
     context.commit('loading', null, { root: true });
+
     return LessonsService.getLessons()
       .then(response => {
         context.commit('notLoading', null, { root: true });
         context.commit({ type: 'setLessons', lessons: response.data });
+        return response;
       }).catch(error => {
         context.commit('notLoading', null, { root: true });
         alert(error.response.data);
+        return Promise.reject(error);
       });
   },
   createLesson(context, input) {
     context.commit('loading', null, { root: true });
+
     LessonsService.createLesson(input)
       .then(response => {
         context.commit('notLoading', null, { root: true });
         context.commit({ type: 'lessonCreated', lesson: response.data });
+        return response;
       }).catch(error => {
         context.commit('notLoading', null, { root: true });
         alert(error.response.data);
+        return Promise.reject(error);
       });
   },
   updateLesson(context, input) {
@@ -64,9 +71,11 @@ const actions = {
       .then(response => {
         context.commit('notLoading', null, { root: true });
         context.commit({ type: 'lessonUpdated', lesson: response.data });
+        return response;
       }).catch(error => {
         context.commit('notLoading', null, { root: true });
         alert(error.response.data);
+        return Promise.reject(error);
       });
   },
   deleteLesson(context, lessonId) {
@@ -77,9 +86,11 @@ const actions = {
         .then((response) => {
           context.commit('notLoading', null, { root: true });
           context.commit({ type: 'deleteLesson', lesson: response.data });
+          return response;
         }).catch(error => {
           context.commit('notLoading', null, { root: true });
           alert(error.response.data);
+          return Promise.reject(error);
         });
     }
   }
