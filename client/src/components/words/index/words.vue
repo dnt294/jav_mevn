@@ -8,6 +8,7 @@ const { mapState, mapActions, mapMutations } = createNamespacedHelpers(
 const lessonsModule = createNamespacedHelpers("lessonsModule");
 
 import wordForm from "../form/wordForm";
+import tagBadge from "@/components/share/tagBadge";
 
 export default {
   name: "words",
@@ -25,7 +26,8 @@ export default {
     ...lessonsModule.mapState(["lessons"])
   },
   components: {
-    wordForm
+    wordForm,
+    tagBadge
   },
   methods: {
     ...mapMutations(["newWord", "editWord"]),
