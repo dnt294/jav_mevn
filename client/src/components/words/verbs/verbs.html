@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="box box-success">
+      <div class="box-header with-border">
+        <h3 class="box-title">Verbs</h3>
+
+        <div class="box-tools pull-right">
+          <button class="btn btn-box-tool" type="button" data-widget="collapse">
+            <i class="fa fa-minus"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="box-body">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th class="lesson-col">Lesson</th>
+              <th class="word-type-col"></th>
+              <th>Hirakata</th>
+              <th>Kanji</th>
+              <th>意味</th>
+              <th>ます</th>
+              <th>て</th>
+              <th>た</th>
+              <th>ない</th>
+              <th>Note</th>
+            </tr>
+          </thead>
+          <tbody>
+            <template v-for="lesson in lessonsWithVerbs">
+              <tr v-for="verb in lesson.verbs">
+                <td v-if="verb === lesson.verbs[0]" :rowspan="lesson.verbs.length" class="lesson-cell">
+                  {{lesson.bookName}}/{{lesson.index}}
+                </td>
+                <td :class="verbTypeClass(verb)" :title="'Động từ loại' + verb.verbType"></td>
+                <td class="big-cell-text">{{verb.hirakata}}</td>
+                <td class="big-cell-text">{{verb.kanji}}</td>
+                <td class="multiline">{{verb.imi}}</td>
+                <td>{{verb.masuForm}}</td>
+                <td>{{verb.teForm}}</td>
+                <td>{{verb.taForm}}</td>
+                <td>{{verb.naiForm}}</td>
+                <td class="multiline">{{verb.note}}</td>
+              </tr>
+              <tr class="blank-row">
+                <td colspan="20"></td>
+              </tr>
+            </template>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

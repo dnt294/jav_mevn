@@ -1,7 +1,7 @@
 import express from 'express';
 const wordRoutes = express.Router();
 
-import Word from '@models/word';
+import Word, { VerbsAggregation } from '@models/word';
 import removeNullEntries from '@functions/removeNullEntries';
 
 wordRoutes.route('/').get((req, res) => {
@@ -39,6 +39,12 @@ wordRoutes.route('/:id').patch((req, res) => {
       res.json(word);
     }
   })
-})
+});
+
+wordRoutes.route('/verbs').get((req, res) => {
+  Word.aggregate(VerbsAggregation, function (err, words) {
+    res.json(words);
+  });
+});
 
 export default wordRoutes;

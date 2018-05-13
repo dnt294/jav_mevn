@@ -37,4 +37,32 @@ var WordSchema = new Schema({
   }
 })
 
+export const VerbsAggregation = [
+  { "$match": { "tags.text": "Động từ" } },
+  {
+    "$lookup": {
+      "from": "lessons",
+      "localField": "lesson",
+      "foreignField": "_id",
+      "as": "lesson"
+    }
+  },
+  { "$unwind": { "path": "$lesson" } },
+  {
+    "$group": {
+      "_id": "$lesson", "verbs": { $push: "$$ROOT" }
+    },
+  },
+  {
+    "$project": {
+      "_id": "$_id._id",
+      "bookName": "$_id.bookName",
+      "index": "$_id.index",
+      "verbs": 1
+    }
+  },
+  {
+    "$sort": { "_id": 1 }
+  }];
+
 export default mongoose.model('Word', WordSchema);
