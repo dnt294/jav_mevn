@@ -23,6 +23,13 @@ export default {
         this.input.tags &&
         this.input.tags.some(tag => tag.text === "Động từ")
       );
+    },
+    isAdj: function() {
+      return (
+        this.input &&
+        this.input.tags &&
+        this.input.tags.some(tag => tag.text === "Tính từ")
+      );
     }
   },
   created() {

@@ -2,6 +2,7 @@ import express from 'express';
 const wordRoutes = express.Router();
 
 import Word from '@models/word';
+import removeNullEntries from '@functions/removeNullEntries';
 
 wordRoutes.route('/').get((req, res) => {
   Word.find({ lesson: req.query.lessonId }, (err, words) => {
@@ -10,7 +11,7 @@ wordRoutes.route('/').get((req, res) => {
 });
 
 wordRoutes.route('/').post((req, res) => {
-  const word = new Word(req.body);
+  const word = new Word(removeNullEntries(req.body));
   Word.create(word, (err, word) => {
     if (!!err) {
       res.status(400).json(err.errors);
@@ -31,7 +32,7 @@ wordRoutes.route('/:id').delete((req, res) => {
 });
 
 wordRoutes.route('/:id').patch((req, res) => {
-  Word.findByIdAndUpdate(req.params['id'], req.body, { new: true }, (err, word) => {
+  Word.findByIdAndUpdate(req.params['id'], removeNullEntries(req.body), { new: true }, (err, word) => {
     if (!!err) {
       res.status(400).json(err.errors);
     } else {

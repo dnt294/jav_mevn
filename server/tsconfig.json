@@ -21,6 +21,9 @@
       "@routes/*": [
         "src/routes/*"
       ],
+      "@functions/*": [
+        "src/functions/*"
+      ],
       "*": [
         "node_modules/*"
       ]

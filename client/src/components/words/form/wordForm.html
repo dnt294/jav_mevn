@@ -16,11 +16,11 @@
     <button class="btn btn-info btn-flat" v-on:click="cancelForm">Cancel</button>
   </div>
   <div class="col-md-12 Cell">
-    <v-select multiple :options="tags" label="text" v-model="input.tags"></v-select>
+    <v-select placeholder="Word Types ..." multiple :options="tags" label="text" v-model="input.tags"></v-select>
   </div>
   <template v-if="isVerb">
     <div class="col-md-2 Cell">
-      <select class="form-control" v-model="input.verbType" required>
+      <select class="form-control" v-model="input.verbType">
         <option value="" selected>Verb type ...</option>
         <option value="1">1</option>
         <option value="2">2</option>
@@ -46,4 +46,8 @@
       <input type="text" placeholder="Nai Form ..." class="form-control" v-model="input.naiForm">
     </div>
   </template>
+  <div class="col-md-12 Cell">
+    <v-select v-if="isAdj" placeholder="Adj Type ..." v-model="input.adjType" :options="['ナ','イ']"></v-select>
+    &nbsp;
+  </div>
 </div>

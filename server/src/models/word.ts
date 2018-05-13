@@ -14,6 +14,7 @@ var WordSchema = new Schema({
   },
   imi: {
     type: String,
+    required: true,
   },
   note: {
     type: String,
@@ -24,18 +25,16 @@ var WordSchema = new Schema({
   },
   tags: [TagSchema],
   // Verb attributes
-  verbType: {
-    type: Number,
-    min: 1, max: 3,
-    validate: {
-      validator: Number.isInteger,
-      message: '{VALUE} is not an integer value'
-    }
-  },
+  verbType: { type: Number, min: 1, max: 3 },
   masuForm: String,
   teForm: String,
   taForm: String,
   naiForm: String,
+  // Adj attributes
+  adjType: {
+    type: String,
+    enum: ['ナ', 'イ']
+  }
 })
 
 export default mongoose.model('Word', WordSchema);
