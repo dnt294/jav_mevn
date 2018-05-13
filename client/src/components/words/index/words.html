@@ -37,16 +37,16 @@
             <div class="col-md-2 Cell">Hirakata</div>
             <div class="col-md-2 Cell">Kanji</div>
             <div class="col-md-2 Cell">意味</div>
-            <div class="col-md-2 Cell">Note</div>
+            <div class="col-md-3 Cell">Note</div>
             <div class="col-md-2 Cell">Tags</div>
-            <div class="col-md-2 Cell"></div>
+            <div class="col-md-1 Cell"></div>
           </div>
           <div class="row divRow" v-for="word in words" v-if="word !== editingWord">
             <div class="col-md-2 Cell big-cell-text">{{word.hirakata}}</div>
             <div class="col-md-2 Cell big-cell-text">{{word.kanji}}</div>
             <div class="col-md-2 Cell">{{word.imi}}</div>
-            <div class="col-md-2 Cell">{{word.note}}</div>
-            <div class="col-md-3 col-sm-2 Cell">
+            <div class="col-md-3 Cell">{{word.note}}</div>
+            <div class="col-md-2 col-sm-2 Cell">
               <div v-if="word.tags">
                 <tagBadge v-for="tag in word.tags" :type="tag.text" v-bind:key="tag._id"></tagBadge>
               </div>
