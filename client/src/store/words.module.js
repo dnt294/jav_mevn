@@ -1,4 +1,5 @@
 import { WordsService } from '@/services/api.service';
+import { defaultWord } from '@/models/word';
 
 const state = {
   words: [],
@@ -105,13 +106,7 @@ const actions = {
 }
 
 const getters = {
-  inputForm: state => state.editingWord ? Object.assign({}, state.editingWord) : {
-    hirakata: "",
-    kanji: "",
-    imi: "",
-    note: "",
-    tags: null
-  }
+  inputForm: state => state.editingWord ? Object.assign({}, state.editingWord) : defaultWord
 }
 
 export default {

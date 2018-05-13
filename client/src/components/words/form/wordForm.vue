@@ -7,20 +7,23 @@ const { mapState, mapActions, mapMutations } = createNamespacedHelpers(
 
 const tagsModule = createNamespacedHelpers("tagsModule");
 
+import { defaultWord, convertForms } from "@/models/word";
+
 export default {
   name: "wordForm",
   data: () => ({
-    input: {
-      hirakata: "",
-      kanji: "",
-      imi: "",
-      note: "",
-      tags: null
-    }
+    input: defaultWord
   }),
   computed: {
     ...mapState(["editingWord"]),
-    ...tagsModule.mapState(["tags"])
+    ...tagsModule.mapState(["tags"]),
+    isVerb: function() {
+      return (
+        this.input &&
+        this.input.tags &&
+        this.input.tags.some(tag => tag.text === "Động từ")
+      );
+    }
   },
   created() {
     this.input = Object.assign(
@@ -35,7 +38,19 @@ export default {
         : this.createWord(this.input);
     },
     ...mapMutations(["cancelForm"]),
-    ...mapActions(["createWord", "updateWord"])
+    ...mapActions(["createWord", "updateWord"]),
+    genVerbForms() {
+      if (!this.input.hirakata || !this.isVerb || !this.input.verbType) {
+        alert("Please input all required!");
+        return;
+      }
+      [
+        this.input.masuForm,
+        this.input.teForm,
+        this.input.taForm,
+        this.input.naiForm
+      ] = convertForms(this.input.hirakata, this.input.verbType);
+    }
   }
 };
 </script>

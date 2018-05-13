@@ -22,7 +22,20 @@ var WordSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Lesson'
   },
-  tags: [TagSchema]
+  tags: [TagSchema],
+  // Verb attributes
+  verbType: {
+    type: Number,
+    min: 1, max: 3,
+    validate: {
+      validator: Number.isInteger,
+      message: '{VALUE} is not an integer value'
+    }
+  },
+  masuForm: String,
+  teForm: String,
+  taForm: String,
+  naiForm: String,
 })
 
 export default mongoose.model('Word', WordSchema);
