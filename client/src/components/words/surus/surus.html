@@ -2,10 +2,10 @@
   <div class="col-md-12">
     <div class="box box-success">
       <div class="box-header with-border">
-        <h3 class="box-title">Verbs</h3>
+        <h3 class="box-title">Surus</h3>
 
         <div class="box-tools pull-right">
-          <button class="btn btn-box-tool" type="button" v-on:click="fetchVerbs(true)">
+          <button class="btn btn-box-tool" type="button" v-on:click="fetchSurus(true)">
             <i class="fa fa-refresh"></i>
           </button>
           <button class="btn btn-box-tool" type="button" data-widget="collapse">
@@ -19,31 +19,21 @@
           <thead>
             <tr>
               <th class="lesson-col">Lesson</th>
-              <th class="word-type-col"></th>
               <th>Hirakata</th>
               <th>Kanji</th>
               <th>意味</th>
-              <th>ます</th>
-              <th>て</th>
-              <th>た</th>
-              <th>ない</th>
               <th>Note</th>
             </tr>
           </thead>
           <tbody>
-            <template v-for="lesson in lessonsWithVerbs">
+            <template v-for="lesson in lessonsWithSurus">
               <tr v-for="words in lesson.words">
                 <td v-if="words === lesson.words[0]" :rowspan="lesson.words.length" class="lesson-cell">
                   {{lesson.bookName}}/{{lesson.index}}
                 </td>
-                <td :class="verbTypeClass(words)" :title="'Động từ loại' + words.verbType"></td>
                 <td class="big-cell-text">{{words.hirakata}}</td>
                 <td class="big-cell-text">{{words.kanji}}</td>
                 <td class="multiline">{{words.imi}}</td>
-                <td>{{words.masuForm}}</td>
-                <td>{{words.teForm}}</td>
-                <td>{{words.taForm}}</td>
-                <td>{{words.naiForm}}</td>
                 <td class="multiline">{{words.note}}</td>
               </tr>
               <tr class="blank-row">

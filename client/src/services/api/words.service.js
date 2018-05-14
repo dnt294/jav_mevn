@@ -15,5 +15,8 @@ export const WordsService = {
   },
   getVerbs() {
     return axios.get('words/verbs');
-  }
+  },
+  getSurus() {
+    return axios.get('words/surus');
+  },
 }
