@@ -6,6 +6,7 @@ import words from '@/components/words/index/words';
 import tags from '@/components/tags/index/tags';
 import verbs from '@/components/words/verbs/verbs';
 import surus from '@/components/words/surus/surus';
+import adjs from '@/components/words/adjs/adjs';
 
 Vue.use(Router);
 
@@ -16,6 +17,7 @@ export default new Router({
     { path: '/words', component: words },
     { path: '/words/verbs', component: verbs },
     { path: '/words/surus', component: surus },
+    { path: '/words/adjs', component: adjs },
     { path: '/tags', component: tags },
   ],
 });

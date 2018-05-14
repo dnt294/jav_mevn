@@ -19,4 +19,7 @@ export const WordsService = {
   getSurus() {
     return axios.get('words/surus');
   },
+  getAdjs() {
+    return axios.get('words/adjs');
+  },
 }
