@@ -28,6 +28,9 @@ export const WordsService = {
   deleteWord(id) {
     return axios.delete(`words/${id}`);
   },
+  getVerbs() {
+    return axios.get('words/verbs');
+  }
 }
 
 export const TagsService = {

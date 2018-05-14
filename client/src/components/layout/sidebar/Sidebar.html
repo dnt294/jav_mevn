@@ -11,7 +11,7 @@
       </div>
     </form>
 
-    <ul class="sidebar-menu">
+    <ul class="sidebar-menu tree" data-widget="tree">
       <li class="header">HEADER</li>
       <router-link tag="li" to="/" active-class="active" exact>
         <a>
@@ -31,11 +31,40 @@
           <span>Tags</span>
         </a>
       </router-link>
-      <router-link tag="li" to="/words" active-class="active">
+      <router-link tag="li" to="/words" active-class="active" exact class="treeview">
         <a>
           <i class="fa fa-sticky-note"></i>
           <span>Words</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
         </a>
+        <ul class="treeview-menu" style="display: block">
+          <router-link tag="li" to="/words/verbs" active-class="active">
+            <a>
+              <i class="fa fa-circle-o"></i>
+              <span>Động từ</span>
+            </a>
+          </router-link>
+          <router-link tag="li" to="/words/adjs" active-class="active">
+            <a>
+              <i class="fa fa-circle-o"></i>
+              <span>Tính từ</span>
+            </a>
+          </router-link>
+          <router-link tag="li" to="/words/suruverbs" active-class="active">
+            <a>
+              <i class="fa fa-circle-o"></i>
+              <span>Suru verbs</span>
+            </a>
+          </router-link>
+          <router-link tag="li" to="/words/expressions" active-class="active">
+            <a>
+              <i class="fa fa-circle-o"></i>
+              <span>Expressions</span>
+            </a>
+          </router-link>
+        </ul>
       </router-link>
     </ul>
   </section>

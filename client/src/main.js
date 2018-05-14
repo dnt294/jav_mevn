@@ -25,3 +25,8 @@ new Vue({
   components: { App },
   template: '<App/>',
 });
+
+$('ul').tree({
+  accordion: true,
+  followLink: true
+});
