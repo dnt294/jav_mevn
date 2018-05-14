@@ -37,8 +37,7 @@ var WordSchema = new Schema({
   }
 })
 
-export const VerbsAggregation = [
-  { "$match": { "tags.text": "Động từ" } },
+const SortByLessonAggregation = [
   {
     "$lookup": {
       "from": "lessons",
@@ -64,5 +63,17 @@ export const VerbsAggregation = [
   {
     "$sort": { "_id": 1 }
   }];
+
+
+export const VerbsAggregation = [
+  { "$match": { "tags.text": "Động từ" } },
+  ...SortByLessonAggregation
+]
+
+export const SurusAggregation = [
+  { "$match": { "tags.text": "Suru Verb" } },
+  ...SortByLessonAggregation
+]
+
 
 export default mongoose.model('Word', WordSchema);
