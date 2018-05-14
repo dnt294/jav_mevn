@@ -2,10 +2,10 @@
   <div class="col-md-12">
     <div class="box box-success" data-widget="box-widget">
       <div class="box-header with-border">
-        <h3 class="box-title">Surus</h3>
+        <h3 class="box-title">Expressions and Adverbs</h3>
 
         <div class="box-tools pull-right">
-          <button class="btn btn-box-tool" type="button" v-on:click="fetchSurus(true)">
+          <button class="btn btn-box-tool" type="button" v-on:click="fetchExpressionsAndAdverbs(true)">
             <i class="fa fa-refresh"></i>
           </button>
           <button class="btn btn-box-tool" type="button" data-widget="collapse">
@@ -18,15 +18,16 @@
         <table class="table table-bordered table-hover">
           <thead>
             <tr>
-              <th class="lesson-col">Lesson</th>
+              <th class="lesson-col lesson-cell">Bài</th>
               <th>Hirakata</th>
               <th>Kanji</th>
               <th>意味</th>
               <th>Note</th>
+              <th>Tags</th>
             </tr>
           </thead>
           <tbody>
-            <template v-for="lesson in lessonsWithSurus">
+            <template v-for="lesson in lessonsWithExpressionsAndAdverbs">
               <tr v-for="word in lesson.words">
                 <td v-if="word === lesson.words[0]" :rowspan="lesson.words.length" class="lesson-cell">
                   {{lesson.bookName}}/{{lesson.index}}
@@ -35,6 +36,11 @@
                 <td class="big-cell-text">{{word.kanji}}</td>
                 <td class="multiline">{{word.imi}}</td>
                 <td class="multiline">{{word.note}}</td>
+                <td>
+                  <div v-if="word.tags">
+                    <tagBadge v-for="tag in word.tags" :type="tag.text" v-bind:key="tag._id"></tagBadge>
+                  </div>
+                </td>
               </tr>
               <tr class="blank-row">
                 <td colspan="20"></td>

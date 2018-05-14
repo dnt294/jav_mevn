@@ -68,12 +68,17 @@ const SortByLessonAggregation = [
 export const VerbsAggregation = [
   { "$match": { "tags.text": "Động từ" } },
   ...SortByLessonAggregation
-]
+];
 
 export const SurusAggregation = [
   { "$match": { "tags.text": "Suru Verb" } },
   ...SortByLessonAggregation
-]
+];
+
+export const ExpressionsAndAdverbsAggregation = [
+  { $match: { "tags.text": { $in: ["Expression", "Adverb"] } } },
+  ...SortByLessonAggregation
+];
 
 export const AdjsAggregation = [
   { $match: { "tags.text": "Tính từ" } },
@@ -110,7 +115,7 @@ export const AdjsAggregation = [
   {
     "$sort": { "_id": 1 }
   }
-]
+];
 
 
 export default mongoose.model('Word', WordSchema);
