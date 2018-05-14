@@ -2,20 +2,20 @@
 import { createNamespacedHelpers } from "vuex";
 
 const { mapState, mapActions, mapMutations } = createNamespacedHelpers(
-  "wordsModule/verbsModule"
+  "wordsModule/typesModule"
 );
 
 export default {
   name: "verbs",
   created() {
-    this.$store.dispatch("wordsModule/verbsModule/fetchVerbs");
+    this.$store.dispatch("wordsModule/typesModule/fetchVerbs");
   },
   computed: {
     ...mapState(["lessonsWithVerbs"])
   },
   methods: {
-    verbTypeClass: verb => {
-      switch (verb.verbType) {
+    verbTypeClass: word => {
+      switch (word.verbType) {
         case 1:
           return "word-type-1-cell";
         case 2:

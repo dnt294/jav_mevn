@@ -1,6 +1,6 @@
 import { WordsService } from '@/services/api/words.service';
 import { defaultWord } from '@/models/word';
-import verbsModule from './wordsModule/verbs.module';
+import typesModule from './wordsModule/types.module';
 
 const state = {
   words: [],
@@ -117,6 +117,6 @@ export default {
   mutations,
   getters,
   modules: {
-    verbsModule
+    typesModule
   }
 };

@@ -50,7 +50,7 @@ export const VerbsAggregation = [
   { "$unwind": { "path": "$lesson" } },
   {
     "$group": {
-      "_id": "$lesson", "verbs": { $push: "$$ROOT" }
+      "_id": "$lesson", "words": { $push: "$$ROOT" }
     },
   },
   {
@@ -58,7 +58,7 @@ export const VerbsAggregation = [
       "_id": "$_id._id",
       "bookName": "$_id.bookName",
       "index": "$_id.index",
-      "verbs": 1
+      "words": 1
     }
   },
   {
