@@ -32,19 +32,19 @@
           </thead>
           <tbody>
             <template v-for="lesson in lessonsWithVerbs">
-              <tr v-for="words in lesson.words">
-                <td v-if="words === lesson.words[0]" :rowspan="lesson.words.length" class="lesson-cell">
+              <tr v-for="word in lesson.words">
+                <td v-if="word === lesson.words[0]" :rowspan="lesson.words.length" class="lesson-cell">
                   {{lesson.bookName}}/{{lesson.index}}
                 </td>
-                <td :class="verbTypeClass(words)" :title="'Động từ loại' + words.verbType"></td>
-                <td class="big-cell-text">{{words.hirakata}}</td>
-                <td class="big-cell-text">{{words.kanji}}</td>
-                <td class="multiline">{{words.imi}}</td>
-                <td>{{words.masuForm}}</td>
-                <td>{{words.teForm}}</td>
-                <td>{{words.taForm}}</td>
-                <td>{{words.naiForm}}</td>
-                <td class="multiline">{{words.note}}</td>
+                <td :class="verbTypeClass(word)" :title="'Động từ loại' + word.verbType"></td>
+                <td class="big-cell-text">{{word.hirakata}}</td>
+                <td class="big-cell-text">{{word.kanji}}</td>
+                <td class="multiline">{{word.imi}}</td>
+                <td>{{word.masuForm}}</td>
+                <td>{{word.teForm}}</td>
+                <td>{{word.taForm}}</td>
+                <td>{{word.naiForm}}</td>
+                <td class="multiline">{{word.note}}</td>
               </tr>
               <tr class="blank-row">
                 <td colspan="20"></td>

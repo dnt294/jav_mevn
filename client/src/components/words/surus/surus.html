@@ -27,14 +27,14 @@
           </thead>
           <tbody>
             <template v-for="lesson in lessonsWithSurus">
-              <tr v-for="words in lesson.words">
-                <td v-if="words === lesson.words[0]" :rowspan="lesson.words.length" class="lesson-cell">
+              <tr v-for="word in lesson.words">
+                <td v-if="word === lesson.words[0]" :rowspan="lesson.words.length" class="lesson-cell">
                   {{lesson.bookName}}/{{lesson.index}}
                 </td>
-                <td class="big-cell-text">{{words.hirakata}}</td>
-                <td class="big-cell-text">{{words.kanji}}</td>
-                <td class="multiline">{{words.imi}}</td>
-                <td class="multiline">{{words.note}}</td>
+                <td class="big-cell-text">{{word.hirakata}}</td>
+                <td class="big-cell-text">{{word.kanji}}</td>
+                <td class="multiline">{{word.imi}}</td>
+                <td class="multiline">{{word.note}}</td>
               </tr>
               <tr class="blank-row">
                 <td colspan="20"></td>
