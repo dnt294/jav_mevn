@@ -1,4 +1,4 @@
-import { TagsService } from '@/services/api.service';
+import { TagsService } from '@/services/api/tags.service';
 
 const state = {
   tags: [],

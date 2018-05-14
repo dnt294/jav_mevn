@@ -1,4 +1,4 @@
-import { WordsService } from '@/services/api.service';
+import { WordsService } from '@/services/api/words.service';
 import { defaultWord } from '@/models/word';
 import verbsModule from './wordsModule/verbs.module';
 

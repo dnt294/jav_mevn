@@ -1,4 +1,4 @@
-import { LessonsService } from '@/services/api.service';
+import { LessonsService } from '@/services/api/lessons.service';
 
 const state = {
   lessons: [],
