@@ -1,0 +1,30 @@
+.blank-row {
+  height: 10px !important;
+}
+
+th {
+  text-align: center;
+}
+
+.lesson-col {
+  width: 80px;
+}
+
+.blank-col {
+  width: 5px;
+  background-color: #afafaf;
+}
+
+.lesson-cell {
+  background-color: #e8e8e8;
+  text-align: center;
+  font-size: 25px;
+}
+
+.word-type-i-cell {
+  background-color: #ffbc49;
+}
+
+.word-type-na-cell {
+  background-color: #7aea52;
+}

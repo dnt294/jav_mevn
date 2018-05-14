@@ -75,5 +75,42 @@ export const SurusAggregation = [
   ...SortByLessonAggregation
 ]
 
+export const AdjsAggregation = [
+  { $match: { "tags.text": "Tính từ" } },
+  {
+    $lookup: {
+      from: "lessons",
+      localField: "lesson",
+      foreignField: "_id",
+      as: "lesson"
+    }
+  },
+  { $unwind: { path: "$lesson" } },
+  {
+    $group: {
+      _id: "$lesson",
+      iAdjs: {
+        $push: { $cond: [{ $eq: ["$$ROOT.adjType", "イ"] }, "$$ROOT", "$noval"] } // $noval is just fake column so nothing added to result.
+      },
+      naAdjs: {
+        $push: { $cond: [{ $eq: ["$$ROOT.adjType", "ナ"] }, "$$ROOT", "$noval"] }
+      }
+    },
+  },
+  {
+    $project: {
+      _id: "$_id._id",
+      bookName: "$_id.bookName",
+      index: "$_id.index",
+      iAdjs: 1,
+      naAdjs: 1,
+      maxRow: { $max: [{ $size: "$iAdjs" }, { $size: "$naAdjs" }] }
+    }
+  },
+  {
+    "$sort": { "_id": 1 }
+  }
+]
+
 
 export default mongoose.model('Word', WordSchema);
