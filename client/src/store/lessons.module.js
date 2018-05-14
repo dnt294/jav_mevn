@@ -35,8 +35,8 @@ const mutations = {
 };
 
 const actions = {
-  fetchLessons(context) {
-    if (state.lessons.length > 0) { return; }
+  fetchLessons(context, refresh = false) {
+    if (state.lessons.length > 0 && !refresh) { return; }
     context.commit('loading', null, { root: true });
 
     return LessonsService.getLessons()

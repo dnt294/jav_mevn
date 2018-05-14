@@ -35,8 +35,8 @@ const mutations = {
 };
 
 const actions = {
-  fetchTags(context) {
-    if (context.state.tags.length > 0) { return; }
+  fetchTags(context, refresh = false) {
+    if (context.state.tags.length > 0 && !refresh) { return; }
     context.commit('loading', null, { root: true });
 
     return TagsService.getTags()

@@ -17,7 +17,7 @@ export default {
   },
   methods: {
     ...mapMutations(["newTag", "editTag"]),
-    ...mapActions(["deleteTag"])
+    ...mapActions(["fetchTags", "deleteTag"])
   }
 };
 </script>

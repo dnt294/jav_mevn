@@ -18,7 +18,7 @@ export default {
   },
   methods: {
     ...mapMutations(["newLesson", "editLesson"]),
-    ...mapActions(["deleteLesson"])
+    ...mapActions(["fetchLessons", "deleteLesson"])
   }
 };
 </script>
