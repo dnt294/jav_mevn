@@ -5,6 +5,7 @@ const state = {
   lessonsWithVerbs: [],
   lessonsWithSurus: [],
   lessonsWithAdjs: [],
+  lessonsWithExpressionsAndAdverbs: [],
 };
 
 const mutations = {
@@ -17,6 +18,9 @@ const mutations = {
   setAdjs(state, payload) {
     state.lessonsWithAdjs = payload.lessonsWithAdjs;
   },
+  setExpressionsAndAdverbs(state, payload) {
+    state.lessonsWithExpressionsAndAdverbs = payload.lessonsWithExpressionsAndAdverbs;
+  }
 };
 
 const actions = {
@@ -41,6 +45,19 @@ const actions = {
       .then((response) => {
         context.commit('notLoading', null, { root: true });
         context.commit({ type: 'setSurus', lessonsWithSurus: response.data });
+      }).catch(error => {
+        context.commit('notLoading', null, { root: true });
+        alert(error.response.data);
+      });
+  },
+  fetchExpressionsAndAdverbs(context, refresh = false) {
+    if (state.lessonsWithExpressionsAndAdverbs.length > 0 && !refresh) { return; }
+
+    context.commit('loading', null, { root: true });
+    WordsService.getExpressionsAndAdverbs()
+      .then((response) => {
+        context.commit('notLoading', null, { root: true });
+        context.commit({ type: 'setExpressionsAndAdverbs', lessonsWithExpressionsAndAdverbs: response.data });
       }).catch(error => {
         context.commit('notLoading', null, { root: true });
         alert(error.response.data);

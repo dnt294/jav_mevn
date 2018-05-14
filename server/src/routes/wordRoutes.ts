@@ -1,8 +1,9 @@
 import express from 'express';
 const wordRoutes = express.Router();
 
-import Word, { VerbsAggregation, SurusAggregation, AdjsAggregation } from '@models/word';
+import Word, { VerbsAggregation, SurusAggregation, AdjsAggregation, ExpressionsAndAdverbsAggregation } from '@models/word';
 import removeNullEntries from '@functions/removeNullEntries';
+import word from '@models/word';
 
 wordRoutes.route('/').get((req, res) => {
   Word.find({ lesson: req.query.lessonId }, (err, words) => {
@@ -55,6 +56,12 @@ wordRoutes.route('/surus').get((req, res) => {
 
 wordRoutes.route('/adjs').get((req, res) => {
   Word.aggregate(AdjsAggregation, function (err, words) {
+    res.json(words);
+  });
+});
+
+wordRoutes.route('/expressionsandadverbs').get((req, res) => {
+  Word.aggregate(ExpressionsAndAdverbsAggregation, function (err, words) {
     res.json(words);
   });
 });
