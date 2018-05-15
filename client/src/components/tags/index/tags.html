@@ -15,35 +15,36 @@
       </div>
 
       <div class="box-body">
-        <div class="divTable">
-          <div class="row divHeading">
-            <div class="col-md-5 Cell">Text</div>
-            <div class="col-md-5 Cell">Type</div>
-            <div class="col-md-2 Cell"></div>
-          </div>
-          <div class="row divRow" v-for="tag in tags" v-if="tag !== editingTag">
-            <div class="col-md-5 Cell">{{tag.text}}</div>
-            <div class="col-md-5 Cell">{{tag.type}}</div>
-            <div class="col-md-2 Cell">
-              <button class="btn btn-danger btn-flat pull-right" v-on:click="deleteTag(tag._id)">
-                <i class="fa fa-trash"></i>
-              </button>
-              <button class="btn btn-success btn-flat pull-right" v-on:click="editTag(tag)" v-if="!isShowCreateForm">
-                <i class="fa fa-edit"></i>
-              </button>
-            </div>
-          </div>
-          <tagForm v-else />
-          <template v-if="!editingTag">
-            <tagForm v-if="isShowCreateForm" />
-            <div class="row divRow" v-else>
-              <div class="col-md-2 col-md-offset-10 Cell">
-                <a class="btn btn-info btn-flat pull-right" colspan="3" v-on:click="newTag">Create New</a>
-              </div>
-            </div>
-          </template>
-        </div>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Text</th>
+              <th>Type</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="tag in tags">
+              <td>{{tag.text}}</td>
+              <td>{{tag.type}}</td>
+              <td>
+                <button class="btn btn-danger btn-flat pull-right" v-on:click="deleteTag(tag._id)">
+                  <i class="fa fa-trash"></i>
+                </button>
+                <button class="btn btn-success btn-flat pull-right" data-toggle="modal" data-target="#tagForm" v-on:click="editTag(tag)">
+                  <i class="fa fa-edit"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="box-footer">
+        <button class="btn btn-info btn-flat pull-right" data-toggle="modal" data-target="#tagForm">
+          Create new
+        </button>
       </div>
     </div>
   </div>
+  <tagForm />
 </div>

@@ -2,7 +2,6 @@ import { TagsService } from '@/services/api/tags.service';
 
 const state = {
   tags: [],
-  isShowCreateForm: false,
   editingTag: null
 };
 
@@ -11,18 +10,13 @@ const mutations = {
     state.tags = payload.tags;
   },
   cancelForm(state) {
-    state.isShowCreateForm = false;
     state.editingTag = null;
-  },
-  newTag(state) {
-    state.isShowCreateForm = true;
   },
   editTag(state, payload) {
     state.editingTag = payload;
   },
   tagCreated(state, payload) {
     state.tags.push(payload.tag);
-    state.isShowCreateForm = false;
   },
   tagUpdated(state, payload) {
     const updatedTag = state.tags.find(tag => tag._id === payload.tag._id);
