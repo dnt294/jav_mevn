@@ -14,7 +14,7 @@
         </div>
       </div>
 
-      <div class="box-body">
+      <div class="box-body table-responsive no-padding">
         <table class="table table-bordered table-hover">
           <thead>
             <tr>
@@ -42,16 +42,16 @@
                   {{lesson.bookName}}/{{lesson.index}}
                 </td>
                 <template v-if="!!lesson.iAdjs[index -1]">
-                  <td class="big-cell-text">{{lesson.iAdjs[index -1].hirakata}}</td>
-                  <td class="big-cell-text">{{lesson.iAdjs[index -1].kanji}}</td>
+                  <td class="big-cell-text oneline">{{lesson.iAdjs[index -1].hirakata}}</td>
+                  <td class="big-cell-text oneline">{{lesson.iAdjs[index -1].kanji}}</td>
                   <td class="multiline">{{lesson.iAdjs[index -1].imi}}</td>
                   <td class="multiline">{{lesson.iAdjs[index -1].note}}</td>
                 </template>
                 <td colspan="4" v-else></td>
                 <td class="blank-col"></td>
                 <template v-if="!!lesson.naAdjs[index -1]">
-                  <td class="big-cell-text">{{lesson.naAdjs[index -1].hirakata}}</td>
-                  <td class="big-cell-text">{{lesson.naAdjs[index -1].kanji}}</td>
+                  <td class="big-cell-text oneline">{{lesson.naAdjs[index -1].hirakata}}</td>
+                  <td class="big-cell-text oneline">{{lesson.naAdjs[index -1].kanji}}</td>
                   <td class="multiline">{{lesson.naAdjs[index -1].imi}}</td>
                   <td class="multiline">{{lesson.naAdjs[index -1].note}}</td>
                 </template>

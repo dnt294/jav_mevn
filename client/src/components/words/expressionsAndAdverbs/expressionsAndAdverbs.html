@@ -14,7 +14,7 @@
         </div>
       </div>
 
-      <div class="box-body">
+      <div class="box-body table-responsive no-padding">
         <table class="table table-bordered table-hover">
           <thead>
             <tr>
@@ -32,8 +32,8 @@
                 <td v-if="word === lesson.words[0]" :rowspan="lesson.words.length" class="lesson-cell">
                   {{lesson.bookName}}/{{lesson.index}}
                 </td>
-                <td class="big-cell-text">{{word.hirakata}}</td>
-                <td class="big-cell-text">{{word.kanji}}</td>
+                <td class="big-cell-text oneline">{{word.hirakata}}</td>
+                <td class="big-cell-text oneline">{{word.kanji}}</td>
                 <td class="multiline">{{word.imi}}</td>
                 <td class="multiline">{{word.note}}</td>
                 <td>

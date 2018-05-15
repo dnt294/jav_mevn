@@ -14,7 +14,7 @@
         </div>
       </div>
 
-      <div class="box-body">
+      <div class="box-body table-responsive no-padding">
         <table class="table table-bordered table-hover">
           <thead>
             <tr>
@@ -37,13 +37,13 @@
                   {{lesson.bookName}}/{{lesson.index}}
                 </td>
                 <td :class="verbTypeClass(word)" :title="'Động từ loại' + word.verbType"></td>
-                <td class="big-cell-text">{{word.hirakata}}</td>
-                <td class="big-cell-text">{{word.kanji}}</td>
+                <td class="big-cell-text oneline">{{word.hirakata}}</td>
+                <td class="big-cell-text oneline">{{word.kanji}}</td>
                 <td class="multiline">{{word.imi}}</td>
-                <td>{{word.masuForm}}</td>
-                <td>{{word.teForm}}</td>
-                <td>{{word.taForm}}</td>
-                <td>{{word.naiForm}}</td>
+                <td class="oneline">{{word.masuForm}}</td>
+                <td class="oneline">{{word.teForm}}</td>
+                <td class="oneline">{{word.taForm}}</td>
+                <td class="oneline">{{word.naiForm}}</td>
                 <td class="multiline">{{word.note}}</td>
               </tr>
               <tr class="blank-row">

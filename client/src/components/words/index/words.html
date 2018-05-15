@@ -31,7 +31,7 @@
         </div>
       </div>
 
-      <div class="box-body fixed-table">
+      <div class="box-body table-responsive no-padding fixed-table">
         <table class="table table-bordered">
           <thead>
             <tr>
@@ -45,8 +45,8 @@
           </thead>
           <tbody>
             <tr v-for="word in words">
-              <td>{{word.hirakata}}</td>
-              <td>{{word.kanji}}</td>
+              <td class="oneline">{{word.hirakata}}</td>
+              <td class="oneline">{{word.kanji}}</td>
               <td>{{word.imi}}</td>
               <td>{{word.note}}</td>
               <td>

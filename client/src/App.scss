@@ -22,6 +22,10 @@
   white-space: pre-line;
 }
 
+.oneline {
+  white-space: nowrap;
+}
+
 .divTable {
   display: table !important;
   width: 100%;
