@@ -2,7 +2,6 @@ import { LessonsService } from '@/services/api/lessons.service';
 
 const state = {
   lessons: [],
-  isShowCreateForm: false,
   editingLesson: null
 };
 
@@ -11,18 +10,13 @@ const mutations = {
     state.lessons = payload.lessons;
   },
   cancelForm(state) {
-    state.isShowCreateForm = false;
     state.editingLesson = null;
-  },
-  newLesson(state) {
-    state.isShowCreateForm = true;
   },
   editLesson(state, payload) {
     state.editingLesson = payload;
   },
   lessonCreated(state, payload) {
     state.lessons.push(payload.lesson);
-    state.isShowCreateForm = false;
   },
   lessonUpdated(state, payload) {
     const updatedLesson = state.lessons.find(lesson => lesson._id === payload.lesson._id);

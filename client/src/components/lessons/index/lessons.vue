@@ -12,12 +12,12 @@ export default {
   created() {
     this.$store.dispatch("lessonsModule/fetchLessons");
   },
-  computed: mapState(["lessons", "isShowCreateForm", "editingLesson"]),
+  computed: mapState(["lessons", "editingLesson"]),
   components: {
     lessonForm
   },
   methods: {
-    ...mapMutations(["newLesson", "editLesson"]),
+    ...mapMutations(["editLesson"]),
     ...mapActions(["fetchLessons", "deleteLesson"])
   }
 };

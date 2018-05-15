@@ -1,12 +1,20 @@
-<div class="row divRow">
-  <div class="col-md-5 Cell">
-    <input v-focus type="text" placeholder="Index..." class="form-control" v-model="input.index">
-  </div>
-  <div class="col-md-5 Cell">
-    <input type="text" placeholder="Book name..." class="form-control" v-model="input.bookName">
-  </div>
-  <div class="col-md-2 Cell">
-    <button class="btn btn-warning btn-flat" v-on:click="submit">Save</button>
-    <button class="btn btn-info btn-flat" v-on:click="cancelForm">Cancel</button>
+<div class="modal fade" tabindex="-1" role="dialog" id="lessonForm">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <input type="text" placeholder="Index..." class="form-control" v-model="input.index">
+          </div>
+          <div class="form-group">
+            <input type="text" placeholder="Book name..." class="form-control" v-model="input.bookName">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary pull-left" type="button" v-on:click="submit" data-dismiss="modal">Save</button>
+        <button class="btn btn-default" type="button" v-on:click="cancelForm" data-dismiss="modal">Close</button>
+      </div>
+    </div>
   </div>
 </div>
