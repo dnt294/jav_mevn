@@ -15,32 +15,34 @@
       </div>
 
       <div class="box-body">
-        <div class="divTable">
-          <div class="row divHeading">
-            <div class="col-md-5 Cell">Index</div>
-            <div class="col-md-5 Cell">BookName</div>
-            <div class="col-md-2 Cell"></div>
-          </div>
-          <div class="row divRow" v-for="lesson in lessons">
-            <div class="col-md-5 Cell">{{lesson.index}}</div>
-            <div class="col-md-5 Cell">{{lesson.bookName}}</div>
-            <div class="col-md-2 Cell">
-              <button class="btn btn-danger btn-flat pull-right" v-on:click="deleteLesson(lesson._id)">
-                <i class="fa fa-trash"></i>
-              </button>
-              <button class="btn btn-success btn-flat pull-right" data-toggle="modal" data-target="#lessonForm" v-on:click="editLesson(lesson)">
-                <i class="fa fa-edit"></i>
-              </button>
-            </div>
-          </div>
-          <div class="row divRow">
-            <div class="col-md-2 col-md-offset-10 Cell">
-              <button class="btn btn-info btn-flat pull-right" data-toggle="modal" data-target="#lessonForm">
-                Create New
-              </button>
-            </div>
-          </div>
-        </div>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Index</th>
+              <th>BookName</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="lesson in lessons">
+              <td>{{lesson.index}}</td>
+              <td>{{lesson.bookName}}</td>
+              <td>
+                <button class="btn btn-danger btn-flat pull-right" v-on:click="deleteLesson(lesson._id)">
+                  <i class="fa fa-trash"></i>
+                </button>
+                <button class="btn btn-success btn-flat pull-right" data-toggle="modal" data-target="#lessonForm" v-on:click="editLesson(lesson)">
+                  <i class="fa fa-edit"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="box-footer">
+        <button class="btn btn-info btn-flat pull-right" data-toggle="modal" data-target="#lessonForm">
+          Create New
+        </button>
       </div>
     </div>
   </div>
