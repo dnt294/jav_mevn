@@ -39,39 +39,39 @@ var WordSchema = new Schema({
 
 const SortByLessonAggregation = [
   {
-    "$lookup": {
-      "from": "lessons",
-      "localField": "lesson",
-      "foreignField": "_id",
-      "as": "lesson"
+    $lookup: {
+      from: "lessons",
+      localField: "lesson",
+      foreignField: "_id",
+      as: "lesson"
     }
   },
-  { "$unwind": { "path": "$lesson" } },
+  { $unwind: { path: "$lesson" } },
   {
-    "$group": {
-      "_id": "$lesson", "words": { $push: "$$ROOT" }
+    $group: {
+      _id: "$lesson", words: { $push: "$$ROOT" }
     },
   },
   {
-    "$project": {
-      "_id": "$_id._id",
-      "bookName": "$_id.bookName",
-      "index": "$_id.index",
-      "words": 1
+    $project: {
+      _id: "$_id._id",
+      bookName: "$_id.bookName",
+      index: "$_id.index",
+      words: 1
     }
   },
   {
-    "$sort": { "_id": 1 }
+    $sort: { "_id": 1 }
   }];
 
 
 export const VerbsAggregation = [
-  { "$match": { "tags.text": "Động từ" } },
+  { $match: { "tags.text": "Động từ" } },
   ...SortByLessonAggregation
 ];
 
 export const SurusAggregation = [
-  { "$match": { "tags.text": "Suru Verb" } },
+  { $match: { "tags.text": "Suru Verb" } },
   ...SortByLessonAggregation
 ];
 
@@ -113,7 +113,7 @@ export const AdjsAggregation = [
     }
   },
   {
-    "$sort": { "_id": 1 }
+    $sort: { "_id": 1 }
   }
 ];
 
