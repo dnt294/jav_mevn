@@ -32,45 +32,44 @@
       </div>
 
       <div class="box-body fixed-table">
-        <div class="divTable">
-          <div class="row divHeading">
-            <div class="col-md-2 Cell">Hirakata</div>
-            <div class="col-md-2 Cell">Kanji</div>
-            <div class="col-md-2 Cell">意味</div>
-            <div class="col-md-3 Cell">Note</div>
-            <div class="col-md-2 Cell">Tags</div>
-            <div class="col-md-1 Cell"></div>
-          </div>
-          <div class="row divRow" v-for="word in words" v-if="word !== editingWord">
-            <div class="col-md-2 Cell big-cell-text">{{word.hirakata}}</div>
-            <div class="col-md-2 Cell big-cell-text">{{word.kanji}}</div>
-            <div class="col-md-2 Cell">{{word.imi}}</div>
-            <div class="col-md-3 Cell">{{word.note}}</div>
-            <div class="col-md-2 col-sm-2 Cell">
-              <div v-if="word.tags">
-                <tagBadge v-for="tag in word.tags" :type="tag.text" v-bind:key="tag._id"></tagBadge>
-              </div>
-            </div>
-            <div class="col-md-1 col-sm-2 Cell">
-              <button class="btn btn-danger btn-flat pull-right" v-on:click="deleteWord(word._id)">
-                <i class="fa fa-trash"></i>
-              </button>
-              <button class="btn btn-success btn-flat pull-right" v-on:click="editWord(word)" v-if="!isShowCreateForm">
-                <i class="fa fa-edit"></i>
-              </button>
-            </div>
-          </div>
-          <wordForm v-else />
-          <template v-if="!editingWord">
-            <wordForm v-if="isShowCreateForm" />
-            <div class="row divRow" v-else>
-              <div class="col-md-2 col-md-offset-10 Cell">
-                <a class="btn btn-info btn-flat pull-right" colspan="3" v-on:click="newWord">Create New</a>
-              </div>
-            </div>
-          </template>
-        </div>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <td>Hirakata</td>
+              <td>Kanji</td>
+              <td>意味</td>
+              <td>Note</td>
+              <td>Tags</td>
+              <td></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="word in words">
+              <td>{{word.hirakata}}</td>
+              <td>{{word.kanji}}</td>
+              <td>{{word.imi}}</td>
+              <td>{{word.note}}</td>
+              <td>
+                <div v-if="word.tags">
+                  <tagBadge v-for="tag in word.tags" :type="tag.text" v-bind:key="tag._id"></tagBadge>
+                </div>
+              </td>
+              <td>
+                <button class="btn btn-danger btn-flat pull-right" v-on:click="deleteWord(word._id)">
+                  <i class="fa fa-trash"></i>
+                </button>
+                <button class="btn btn-success btn-flat pull-right" data-toggle="modal" data-target="#wordForm" v-on:click="editWord(word)">
+                  <i class="fa fa-edit"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="box-footer">
+        <a class="btn btn-info btn-flat pull-right" data-toggle="modal" data-target="#wordForm">Create New</a>
       </div>
     </div>
   </div>
+  <wordForm/>
 </div>

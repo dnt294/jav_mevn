@@ -1,53 +1,60 @@
-<div class="row divRow">
-  <div class="col-md-2 Cell">
-    <input v-focus type="text" placeholder="Hirakata..." class="form-control" v-model="input.hirakata">
-  </div>
-  <div class="col-md-2 Cell">
-    <input type="text" placeholder="Kanji..." class="form-control" v-model="input.kanji">
-  </div>
-  <div class="col-md-3 Cell">
-    <textarea type="text" placeholder="意味..." class="form-control" v-model="input.imi"></textarea>
-  </div>
-  <div class="col-md-3 Cell">
-    <textarea type="text" placeholder="Note..." class="form-control" v-model="input.note"></textarea>
-  </div>
-  <div class="col-md-2 Cell">
-    <button class="btn btn-warning btn-flat" v-on:click="submit">Save</button>
-    <button class="btn btn-info btn-flat" v-on:click="cancelForm">Cancel</button>
-  </div>
-  <div class="col-md-12 Cell">
-    <v-select placeholder="Word Types ..." multiple :options="tags" label="text" v-model="input.tags"></v-select>
-  </div>
-  <template v-if="isVerb">
-    <div class="col-md-2 Cell">
-      <select class="form-control" v-model="input.verbType">
-        <option value="" selected>Verb type ...</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-      </select>
+<div class="modal fade" tabindex="-1" role="dialog" id="wordForm">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <input v-focus type="text" placeholder="Hirakata..." class="form-control" v-model="input.hirakata">
+          </div>
+          <div class="form-group">
+            <input type="text" placeholder="Kanji..." class="form-control" v-model="input.kanji">
+          </div>
+          <div class="form-group">
+            <textarea type="text" placeholder="意味..." class="form-control" v-model="input.imi"></textarea>
+          </div>
+          <div class="form-group">
+            <textarea type="text" placeholder="Note..." class="form-control" v-model="input.note"></textarea>
+          </div>
+          <div class="form-group">
+            <v-select placeholder="Word Types ..." multiple :options="tags" label="text" v-model="input.tags"></v-select>
+          </div>
+          <template v-if="isVerb">
+            <div class="form-group">
+              <select class="form-control" v-model="input.verbType">
+                <option value="" selected>Verb type ...</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-flat" type="button" v-on:click="genVerbForms">
+                <span>Gen form</span>
+                <i class="fa fa-caret-right"></i>
+              </button>
+            </div>
+            <div class="form-group">
+              <input type="text" placeholder="Masu Form ..." class="form-control" v-model="input.masuForm">
+            </div>
+            <div class="form-group">
+              <input type="text" placeholder="Te Form ..." class="form-control" v-model="input.teForm">
+            </div>
+            <div class="form-group">
+              <input type="text" placeholder="Ta Form ..." class="form-control" v-model="input.taForm">
+            </div>
+            <div class="form-group">
+              <input type="text" placeholder="Nai Form ..." class="form-control" v-model="input.naiForm">
+            </div>
+          </template>
+          <div class="form-group" v-if="isAdj">
+            <v-select placeholder="Adj Type ..." v-model="input.adjType" :options="['ナ','イ']"></v-select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary pull-left" type="button" v-on:click="submit" data-dismiss="modal">Save</button>
+        <button class="btn btn-default" type="button" v-on:click="cancelForm" data-dismiss="modal">Close</button>
+      </div>
     </div>
-    <div class="col-md-2 Cell">
-      <button class="btn btn-flat" v-on:click="genVerbForms">
-        <span>Gen form</span>
-        <i class="fa fa-caret-right"></i>
-      </button>
-    </div>
-    <div class="col-md-2 Cell">
-      <input type="text" placeholder="Masu Form ..." class="form-control" v-model="input.masuForm">
-    </div>
-    <div class="col-md-2 Cell">
-      <input type="text" placeholder="Te Form ..." class="form-control" v-model="input.teForm">
-    </div>
-    <div class="col-md-2 Cell">
-      <input type="text" placeholder="Ta Form ..." class="form-control" v-model="input.taForm">
-    </div>
-    <div class="col-md-2 Cell">
-      <input type="text" placeholder="Nai Form ..." class="form-control" v-model="input.naiForm">
-    </div>
-  </template>
-  <div class="col-md-12 Cell">
-    <v-select v-if="isAdj" placeholder="Adj Type ..." v-model="input.adjType" :options="['ナ','イ']"></v-select>
-    &nbsp;
   </div>
 </div>

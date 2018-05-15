@@ -24,24 +24,28 @@ const convertedPart = {
 }
 
 export function convertForms(dictForm, verbType) {
-  if (verbType === "1") {
-    const part = dictForm.slice(-1);          // "のむ" => "む"
-    const sliced = dictForm.slice(0, -1);     // "のむ" => "の"
-    return [
-      sliced + convertedPart[part].masu,
-      sliced + convertedPart[part].te,
-      sliced + convertedPart[part].ta,
-      sliced + convertedPart[part].nai,
-    ]
-  } else if (verbType === "2") {
-    const sliced = dictForm.slice(0, -1);     // "たべる" => "たべ"
-    return [
-      sliced + "ます",
-      sliced + "て",
-      sliced + "た",
-      sliced + "ない",
-    ]
-  } else {
-    alert("Chỉ hỗ trợ verb loại 1 hoặc 2");
+  switch (verbType) {
+    case 1:
+    case "1":
+      const part = dictForm.slice(-1);          // "のむ" => "む"
+      const sliced1st = dictForm.slice(0, -1);     // "のむ" => "の"
+      return [
+        sliced1st + convertedPart[part].masu,
+        sliced1st + convertedPart[part].te,
+        sliced1st + convertedPart[part].ta,
+        sliced1st + convertedPart[part].nai,
+      ]
+    case 2:
+    case "2":
+      const sliced2nd = dictForm.slice(0, -1);     // "たべる" => "たべ"
+      return [
+        sliced2nd + "ます",
+        sliced2nd + "て",
+        sliced2nd + "た",
+        sliced2nd + "ない",
+      ]
+    default:
+      alert("Chỉ hỗ trợ verb loại 1 hoặc 2");
+      return ['', '', '', '']
   }
 }

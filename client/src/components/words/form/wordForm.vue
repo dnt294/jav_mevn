@@ -32,13 +32,16 @@ export default {
       );
     }
   },
-  created() {
-    this.input = Object.assign(
-      {},
-      this.$store.getters["wordsModule/inputForm"]
-    );
+  mounted() {
+    $(this.$el).on("show.bs.modal", this.show);
   },
   methods: {
+    show() {
+      this.input = Object.assign(
+        {},
+        this.$store.getters["wordsModule/inputForm"]
+      );
+    },
     submit() {
       !!this.editingWord
         ? this.updateWord(this.input)
