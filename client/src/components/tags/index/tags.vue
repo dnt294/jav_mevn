@@ -11,12 +11,12 @@ export default {
   created() {
     this.$store.dispatch("tagsModule/fetchTags");
   },
-  computed: mapState(["tags", "isShowCreateForm", "editingTag"]),
+  computed: mapState(["tags", "editingTag"]),
   components: {
     tagForm
   },
   methods: {
-    ...mapMutations(["newTag", "editTag"]),
+    ...mapMutations(["editTag"]),
     ...mapActions(["fetchTags", "deleteTag"])
   }
 };

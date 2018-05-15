@@ -12,10 +12,16 @@ export default {
     }
   }),
   computed: mapState(["editingTag"]),
-  created() {
-    this.input = Object.assign({}, this.$store.getters["tagsModule/inputForm"]);
+  mounted() {
+    $(this.$el).on("show.bs.modal", this.show);
   },
   methods: {
+    show() {
+      this.input = Object.assign(
+        {},
+        this.$store.getters["tagsModule/inputForm"]
+      );
+    },
     submit() {
       !!this.editingTag
         ? this.updateTag(this.input)

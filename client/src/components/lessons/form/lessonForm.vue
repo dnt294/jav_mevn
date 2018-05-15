@@ -14,13 +14,16 @@ export default {
     }
   }),
   computed: mapState(["editingLesson"]),
-  created() {
-    this.input = Object.assign(
-      {},
-      this.$store.getters["lessonsModule/inputForm"]
-    );
+  mounted() {
+    $(this.$el).on("show.bs.modal", this.show);
   },
   methods: {
+    show() {
+      this.input = Object.assign(
+        {},
+        this.$store.getters["lessonsModule/inputForm"]
+      );
+    },
     submit() {
       !!this.editingLesson
         ? this.updateLesson(this.input)

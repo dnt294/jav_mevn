@@ -17,12 +17,7 @@ export default {
     this.$store.dispatch("wordsModule/fetchFirstWords");
   },
   computed: {
-    ...mapState([
-      "words",
-      "isShowCreateForm",
-      "editingWord",
-      "selectingLessonId"
-    ]),
+    ...mapState(["words", "editingWord", "selectingLessonId"]),
     ...lessonsModule.mapState(["lessons"])
   },
   components: {
@@ -30,7 +25,7 @@ export default {
     tagBadge
   },
   methods: {
-    ...mapMutations(["newWord", "editWord"]),
+    ...mapMutations(["editWord"]),
     ...mapActions(["deleteWord", "changeLesson"])
   }
 };

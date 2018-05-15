@@ -4,7 +4,6 @@ import typesModule from './wordsModule/types.module';
 
 const state = {
   words: [],
-  isShowCreateForm: false,
   editingWord: null,
   selectingLessonId: null
 };
@@ -17,18 +16,13 @@ const mutations = {
     state.words = payload.words;
   },
   cancelForm(state) {
-    state.isShowCreateForm = false;
     state.editingWord = null;
-  },
-  newWord(state) {
-    state.isShowCreateForm = true;
   },
   editWord(state, payload) {
     state.editingWord = payload;
   },
   wordCreated(state, payload) {
     state.words.push(payload.word);
-    state.isShowCreateForm = false;
   },
   wordUpdated(state, payload) {
     const updatedWord = state.words.find(word => word._id === payload.word._id);
