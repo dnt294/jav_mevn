@@ -27,7 +27,7 @@
             <tr v-for="lesson in lessons">
               <td class="oneline">{{lesson.index}}</td>
               <td class="oneline">{{lesson.bookName}}</td>
-              <td>
+              <td style="display: flex;">
                 <button class="btn btn-danger btn-flat pull-right" v-on:click="deleteLesson(lesson._id)">
                   <i class="fa fa-trash"></i>
                 </button>

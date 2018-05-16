@@ -27,7 +27,7 @@
             <tr v-for="tag in tags">
               <td class="oneline">{{tag.text}}</td>
               <td class="oneline">{{tag.type}}</td>
-              <td>
+              <td style="display: flex;">
                 <button class="btn btn-danger btn-flat pull-right" v-on:click="deleteTag(tag._id)">
                   <i class="fa fa-trash"></i>
                 </button>

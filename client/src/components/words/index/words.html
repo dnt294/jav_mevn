@@ -57,11 +57,11 @@
                   <tagBadge v-for="tag in word.tags" :type="tag.text" v-bind:key="tag._id"></tagBadge>
                 </div>
               </td>
-              <td>
-                <button class="btn btn-danger btn-flat pull-right" v-on:click="deleteWord(word._id)">
+              <td style="display: flex;">
+                <button class="btn btn-danger btn-flat" v-on:click="deleteWord(word._id)">
                   <i class="fa fa-trash"></i>
                 </button>
-                <button class="btn btn-success btn-flat pull-right" data-toggle="modal" data-target="#wordForm" v-on:click="editWord(word)">
+                <button class="btn btn-success btn-flat" data-toggle="modal" data-target="#wordForm" v-on:click="editWord(word)">
                   <i class="fa fa-edit"></i>
                 </button>
               </td>
