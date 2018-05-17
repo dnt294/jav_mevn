@@ -1,9 +1,12 @@
 <script>
 import { createNamespacedHelpers } from "vuex";
 
-const { mapState, mapActions, mapMutations } = createNamespacedHelpers(
-  "wordsModule/typesModule"
-);
+const {
+  mapState,
+  mapGetters,
+  mapActions,
+  mapMutations
+} = createNamespacedHelpers("wordsModule/typesModule");
 
 export default {
   name: "Adjs",
@@ -11,7 +14,8 @@ export default {
     this.$store.dispatch("wordsModule/typesModule/fetchAdjs");
   },
   computed: {
-    ...mapState(["lessonsWithAdjs"])
+    ...mapState(["lessonsWithAdjs"]),
+    ...mapGetters(["totalAdjs"])
   },
   methods: {
     ...mapActions(["fetchAdjs"])

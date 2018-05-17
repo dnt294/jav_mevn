@@ -78,9 +78,21 @@ const actions = {
   },
 }
 
+const getters = {
+  totalVerbs: (state) => state.lessonsWithVerbs.reduce((sum, lesson) => sum += lesson.words.length, 0),
+  totalAdjs: (state) => {
+    return state.lessonsWithAdjs.reduce((sum, lesson) => {
+      return sum += lesson.iAdjs.length + lesson.naAdjs.length
+    }, 0);
+  },
+  totalSurus: (state) => state.lessonsWithSurus.reduce((sum, lesson) => sum += lesson.words.length, 0),
+  totalExpressionsAndAdverbs: (state) => state.lessonsWithExpressionsAndAdverbs.reduce((sum, lesson) => sum += lesson.words.length, 0),
+}
+
 export default {
   namespaced: true,
   state,
   actions,
   mutations,
+  getters,
 };
