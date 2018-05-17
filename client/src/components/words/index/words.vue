@@ -17,8 +17,13 @@ export default {
     this.$store.dispatch("wordsModule/fetchFirstWords");
   },
   computed: {
-    ...mapState(["words", "editingWord", "selectingLessonId"]),
-    ...lessonsModule.mapState(["lessons"])
+    ...mapState([
+      "words",
+      "isLoadingWords",
+      "editingWord",
+      "selectingLessonId"
+    ]),
+    ...lessonsModule.mapState(["lessons", "isLoadingLessons"])
   },
   components: {
     wordForm,

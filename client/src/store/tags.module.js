@@ -2,10 +2,14 @@ import { TagsService } from '@/services/api/tags.service';
 
 const state = {
   tags: [],
+  isLoadingTags: false,
   editingTag: null
 };
 
 const mutations = {
+  setIsLoading(state, payload) {
+    state.isLoadingTags = payload.isLoadingTags;
+  },
   setTags(state, payload) {
     state.tags = payload.tags;
   },
@@ -31,61 +35,53 @@ const mutations = {
 const actions = {
   fetchTags(context, refresh = false) {
     if (context.state.tags.length > 0 && !refresh) { return; }
-    context.commit('loading', null, { root: true });
+    context.commit('setIsLoading', { isLoadingTags: true });
 
     return TagsService.getTags()
       .then(response => {
-        context.commit('notLoading', null, { root: true });
         context.commit({ type: 'setTags', tags: response.data });
         return response;
       }).catch(error => {
-        context.commit('notLoading', null, { root: true });
         alert(error.response.data);
         return Promise.reject(error);
-      });
+      }).finally(() => context.commit('setIsLoading', { isLoadingTags: false }));
   },
   createTag(context, input) {
-    context.commit('loading', null, { root: true });
+    context.commit('setIsLoading', { isLoadingTags: true });
     TagsService.createTag(input)
       .then(response => {
-        context.commit('notLoading', null, { root: true });
         context.commit({ type: 'tagCreated', tag: response.data });
         return response;
       }).catch(error => {
-        context.commit('notLoading', null, { root: true });
         alert(error.response.data);
         return Promise.reject(error);
-      });
+      }).finally(() => context.commit('setIsLoading', { isLoadingTags: false }));
   },
   updateTag(context, input) {
-    context.commit('loading', null, { root: true });
+    context.commit('setIsLoading', { isLoadingTags: true });
     const tagId = context.state.editingTag._id;
 
     TagsService.updateTag(tagId, input)
       .then(response => {
-        context.commit('notLoading', null, { root: true });
         context.commit({ type: 'tagUpdated', tag: response.data });
         return response;
       }).catch(error => {
-        context.commit('notLoading', null, { root: true });
         alert(error.response.data);
         return Promise.reject(error);
-      });
+      }).finally(() => context.commit('setIsLoading', { isLoadingTags: false }));
   },
   deleteTag(context, tagId) {
     const result = confirm('Delete this ?');
     if (result) {
-      context.commit('loading', null, { root: true });
+      context.commit('setIsLoading', { isLoadingTags: true });
       TagsService.deleteTag(tagId)
         .then((response) => {
-          context.commit('notLoading', null, { root: true });
           context.commit({ type: 'deleteTag', tag: response.data });
           return response;
         }).catch(error => {
-          context.commit('notLoading', null, { root: true });
           alert(error.response.data);
           return Promise.reject(error);
-        });
+        }).finally(() => context.commit('setIsLoading', { isLoadingTags: false }));
     }
   }
 }

@@ -44,6 +44,10 @@
           Create New
         </button>
       </div>
+
+      <div class="overlay" v-if="isLoadingLessons">
+        <i class="fa fa-refresh fa-spin"></i>
+      </div>
     </div>
   </div>
   <lessonForm/>

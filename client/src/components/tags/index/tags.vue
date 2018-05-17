@@ -11,7 +11,7 @@ export default {
   created() {
     this.$store.dispatch("tagsModule/fetchTags");
   },
-  computed: mapState(["tags", "editingTag"]),
+  computed: mapState(["tags", "isLoadingTags", "editingTag"]),
   components: {
     tagForm
   },

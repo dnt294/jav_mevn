@@ -44,6 +44,10 @@
           Create new
         </button>
       </div>
+
+      <div class="overlay" v-if="isLoadingTags">
+        <i class="fa fa-refresh fa-spin"></i>
+      </div>
     </div>
   </div>
   <tagForm />
