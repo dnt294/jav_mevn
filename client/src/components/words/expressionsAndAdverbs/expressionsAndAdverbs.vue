@@ -19,7 +19,7 @@ export default {
     tagBadge
   },
   computed: {
-    ...mapState(["lessonsWithExpressionsAndAdverbs"]),
+    ...mapState(["lessonsWithExpressionsAndAdverbs", "isLoadingElses"]),
     ...mapGetters(["totalExpressionsAndAdverbs"])
   },
   actions: {

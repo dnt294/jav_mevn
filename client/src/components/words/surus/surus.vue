@@ -14,7 +14,7 @@ export default {
     this.$store.dispatch("wordsModule/typesModule/fetchSurus");
   },
   computed: {
-    ...mapState(["lessonsWithSurus"]),
+    ...mapState(["lessonsWithSurus", "isLoadingSurus"]),
     ...mapGetters(["totalSurus"])
   },
   methods: {

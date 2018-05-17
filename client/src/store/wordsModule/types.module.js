@@ -6,9 +6,25 @@ const state = {
   lessonsWithSurus: [],
   lessonsWithAdjs: [],
   lessonsWithExpressionsAndAdverbs: [],
+  isLoadingVerbs: false,
+  isLoadingSurus: false,
+  isLoadingAdjs: false,
+  isLoadingElses: false
 };
 
 const mutations = {
+  setIsLoadingVerbs(state, payload) {
+    state.isLoadingVerbs = payload.isLoadingVerbs;
+  },
+  setIsLoadingSurus(state, payload) {
+    state.isLoadingSurus = payload.isLoadingSurus;
+  },
+  setIsLoadingAdjs(state, payload) {
+    state.isLoadingAdjs = payload.isLoadingAdjs;
+  },
+  setIsLoadingElses(state, payload) {
+    state.isLoadingElses = payload.isLoadingElses;
+  },
   setVerbs(state, payload) {
     state.lessonsWithVerbs = payload.lessonsWithVerbs;
   },
@@ -27,54 +43,46 @@ const actions = {
   fetchVerbs(context, refresh = false) {
     if (state.lessonsWithVerbs.length > 0 && !refresh) { return; }
 
-    context.commit('loading', null, { root: true });
+    context.commit('setIsLoadingVerbs', { isLoadingVerbs: true });
     WordsService.getVerbs()
       .then((response) => {
-        context.commit('notLoading', null, { root: true });
         context.commit({ type: 'setVerbs', lessonsWithVerbs: response.data });
       }).catch(error => {
-        context.commit('notLoading', null, { root: true });
         alert(error.response.data);
-      });
+      }).finally(() => context.commit('setIsLoadingVerbs', { isLoadingVerbs: false }));
   },
   fetchSurus(context, refresh = false) {
     if (state.lessonsWithSurus.length > 0 && !refresh) { return; }
 
-    context.commit('loading', null, { root: true });
+    context.commit('setIsLoadingSurus', { isLoadingSurus: true });
     WordsService.getSurus()
       .then((response) => {
-        context.commit('notLoading', null, { root: true });
         context.commit({ type: 'setSurus', lessonsWithSurus: response.data });
       }).catch(error => {
-        context.commit('notLoading', null, { root: true });
         alert(error.response.data);
-      });
+      }).finally(() => context.commit('setIsLoadingSurus', { isLoadingSurus: false }));
   },
   fetchExpressionsAndAdverbs(context, refresh = false) {
     if (state.lessonsWithExpressionsAndAdverbs.length > 0 && !refresh) { return; }
 
-    context.commit('loading', null, { root: true });
+    context.commit('setIsLoadingElses', { isLoadingElses: true });
     WordsService.getExpressionsAndAdverbs()
       .then((response) => {
-        context.commit('notLoading', null, { root: true });
         context.commit({ type: 'setExpressionsAndAdverbs', lessonsWithExpressionsAndAdverbs: response.data });
       }).catch(error => {
-        context.commit('notLoading', null, { root: true });
         alert(error.response.data);
-      });
+      }).finally(() => context.commit('setIsLoadingElses', { isLoadingElses: false }));
   },
   fetchAdjs(context, refresh = false) {
     if (state.lessonsWithAdjs.length > 0 && !refresh) { return; }
 
-    context.commit('loading', null, { root: true });
+    context.commit('setIsLoadingAdjs', { isLoadingAdjs: true });
     WordsService.getAdjs()
       .then((response) => {
-        context.commit('notLoading', null, { root: true });
         context.commit({ type: 'setAdjs', lessonsWithAdjs: response.data });
       }).catch(error => {
-        context.commit('notLoading', null, { root: true });
         alert(error.response.data);
-      });
+      }).finally(() => context.commit('setIsLoadingAdjs', { isLoadingAdjs: false }));
   },
 }
 
