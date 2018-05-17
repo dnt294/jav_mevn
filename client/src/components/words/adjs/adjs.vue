@@ -14,7 +14,7 @@ export default {
     this.$store.dispatch("wordsModule/typesModule/fetchAdjs");
   },
   computed: {
-    ...mapState(["lessonsWithAdjs"]),
+    ...mapState(["lessonsWithAdjs", "isLoadingAdjs"]),
     ...mapGetters(["totalAdjs"])
   },
   methods: {

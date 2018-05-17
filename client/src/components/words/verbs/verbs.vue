@@ -14,7 +14,7 @@ export default {
     this.$store.dispatch("wordsModule/typesModule/fetchVerbs");
   },
   computed: {
-    ...mapState(["lessonsWithVerbs"]),
+    ...mapState(["lessonsWithVerbs", "isLoadingVerbs"]),
     ...mapGetters(["totalVerbs"])
   },
   methods: {
