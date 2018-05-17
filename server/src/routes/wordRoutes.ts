@@ -1,7 +1,7 @@
 import express from 'express';
 const wordRoutes = express.Router();
 
-import Word, { VerbsAggregation, SurusAggregation, AdjsAggregation, ExpressionsAndAdverbsAggregation } from '@models/word';
+import Word, { VerbsAggregation, SurusAggregation, AdjsAggregation, ElsesAggregation } from '@models/word';
 import removeNullEntries from '@functions/removeNullEntries';
 import word from '@models/word';
 
@@ -60,8 +60,8 @@ wordRoutes.route('/adjs').get((req, res) => {
   });
 });
 
-wordRoutes.route('/expressionsandadverbs').get((req, res) => {
-  Word.aggregate(ExpressionsAndAdverbsAggregation, function (err, words) {
+wordRoutes.route('/elses').get((req, res) => {
+  Word.aggregate(ElsesAggregation, function (err, words) {
     res.json(words);
   });
 });

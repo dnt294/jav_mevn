@@ -75,7 +75,7 @@ export const SurusAggregation = [
   ...SortByLessonAggregation
 ];
 
-export const ExpressionsAndAdverbsAggregation = [
+export const ElsesAggregation = [
   { $match: { "tags.text": { $in: ["Expression", "Adverb", "Suffix"] } } },
   ...SortByLessonAggregation
 ];

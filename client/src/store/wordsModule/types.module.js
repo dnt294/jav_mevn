@@ -5,7 +5,7 @@ const state = {
   lessonsWithVerbs: [],
   lessonsWithSurus: [],
   lessonsWithAdjs: [],
-  lessonsWithExpressionsAndAdverbs: [],
+  lessonsWithElses: [],
   isLoadingVerbs: false,
   isLoadingSurus: false,
   isLoadingAdjs: false,
@@ -34,8 +34,8 @@ const mutations = {
   setAdjs(state, payload) {
     state.lessonsWithAdjs = payload.lessonsWithAdjs;
   },
-  setExpressionsAndAdverbs(state, payload) {
-    state.lessonsWithExpressionsAndAdverbs = payload.lessonsWithExpressionsAndAdverbs;
+  setElses(state, payload) {
+    state.lessonsWithElses = payload.lessonsWithElses;
   }
 };
 
@@ -62,13 +62,13 @@ const actions = {
         alert(error.response.data);
       }).finally(() => context.commit('setIsLoadingSurus', { isLoadingSurus: false }));
   },
-  fetchExpressionsAndAdverbs(context, refresh = false) {
-    if (state.lessonsWithExpressionsAndAdverbs.length > 0 && !refresh) { return; }
+  fetchElses(context, refresh = false) {
+    if (state.lessonsWithElses.length > 0 && !refresh) { return; }
 
     context.commit('setIsLoadingElses', { isLoadingElses: true });
-    WordsService.getExpressionsAndAdverbs()
+    WordsService.getElses()
       .then((response) => {
-        context.commit({ type: 'setExpressionsAndAdverbs', lessonsWithExpressionsAndAdverbs: response.data });
+        context.commit({ type: 'setElses', lessonsWithElses: response.data });
       }).catch(error => {
         alert(error.response.data);
       }).finally(() => context.commit('setIsLoadingElses', { isLoadingElses: false }));
@@ -94,7 +94,7 @@ const getters = {
     }, 0);
   },
   totalSurus: (state) => state.lessonsWithSurus.reduce((sum, lesson) => sum += lesson.words.length, 0),
-  totalExpressionsAndAdverbs: (state) => state.lessonsWithExpressionsAndAdverbs.reduce((sum, lesson) => sum += lesson.words.length, 0),
+  totalElses: (state) => state.lessonsWithElses.reduce((sum, lesson) => sum += lesson.words.length, 0),
 }
 
 export default {

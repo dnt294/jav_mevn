@@ -22,7 +22,7 @@ export const WordsService = {
   getAdjs() {
     return axios.get('words/adjs');
   },
-  getExpressionsAndAdverbs() {
-    return axios.get('words/expressionsandadverbs');
+  getElses() {
+    return axios.get('words/elses');
   },
 }

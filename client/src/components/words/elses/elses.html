@@ -2,10 +2,10 @@
   <div class="col-md-12">
     <div class="box box-success" data-widget="box-widget">
       <div class="box-header with-border">
-        <h3 class="box-title">Expressions and Adverbs - Total: {{totalExpressionsAndAdverbs}}</h3>
+        <h3 class="box-title">Elses - Total: {{totalElses}}</h3>
 
         <div class="box-tools pull-right">
-          <button class="btn btn-box-tool" type="button" v-on:click="fetchExpressionsAndAdverbs(true)">
+          <button class="btn btn-box-tool" type="button" v-on:click="fetchElses(true)">
             <i class="fa fa-refresh"></i>
           </button>
           <button class="btn btn-box-tool" type="button" data-widget="collapse">
@@ -27,7 +27,7 @@
             </tr>
           </thead>
           <tbody>
-            <template v-for="lesson in lessonsWithExpressionsAndAdverbs">
+            <template v-for="lesson in lessonsWithElses">
               <tr v-for="word in lesson.words">
                 <td v-if="word === lesson.words[0]" :rowspan="lesson.words.length" class="lesson-cell">
                   {{lesson.bookName}}/{{lesson.index}}
