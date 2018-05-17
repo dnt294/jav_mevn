@@ -4,7 +4,8 @@ const colorMap = {
   "Tính từ": "badge bg-yellow",
   Adverb: "badge bg-green",
   "Suru Verb": "badge bg-blue",
-  Expression: "badge"
+  Expression: "badge",
+  Suffix: "badge"
 };
 
 export default {

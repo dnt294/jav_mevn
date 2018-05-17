@@ -76,7 +76,7 @@ export const SurusAggregation = [
 ];
 
 export const ExpressionsAndAdverbsAggregation = [
-  { $match: { "tags.text": { $in: ["Expression", "Adverb"] } } },
+  { $match: { "tags.text": { $in: ["Expression", "Adverb", "Suffix"] } } },
   ...SortByLessonAggregation
 ];
 
