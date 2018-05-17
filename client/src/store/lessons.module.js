@@ -2,10 +2,14 @@ import { LessonsService } from '@/services/api/lessons.service';
 
 const state = {
   lessons: [],
+  isLoadingLessons: false,
   editingLesson: null
 };
 
 const mutations = {
+  setIsLoading(state, payload) {
+    state.isLoadingLessons = payload.isLoadingLessons;
+  },
   setLessons(state, payload) {
     state.lessons = payload.lessons;
   },
@@ -31,61 +35,53 @@ const mutations = {
 const actions = {
   fetchLessons(context, refresh = false) {
     if (state.lessons.length > 0 && !refresh) { return; }
-    context.commit('loading', null, { root: true });
+    context.commit('setIsLoading', { isLoadingLessons: true });
 
     return LessonsService.getLessons()
       .then(response => {
-        context.commit('notLoading', null, { root: true });
         context.commit({ type: 'setLessons', lessons: response.data });
         return response;
       }).catch(error => {
-        context.commit('notLoading', null, { root: true });
         alert(error.response.data);
         return Promise.reject(error);
-      });
+      }).finally(() => context.commit('setIsLoading', { isLoadingLessons: false }));
   },
   createLesson(context, input) {
-    context.commit('loading', null, { root: true });
+    context.commit('setIsLoading', { isLoadingLessons: true });
 
     LessonsService.createLesson(input)
       .then(response => {
-        context.commit('notLoading', null, { root: true });
         context.commit({ type: 'lessonCreated', lesson: response.data });
         return response;
       }).catch(error => {
-        context.commit('notLoading', null, { root: true });
         alert(error.response.data);
         return Promise.reject(error);
-      });
+      }).finally(() => context.commit('setIsLoading', { isLoadingLessons: false }));
   },
   updateLesson(context, input) {
-    context.commit('loading', null, { root: true });
+    context.commit('setIsLoading', { isLoadingLessons: true });
     const lessonId = context.state.editingLesson._id;
     LessonsService.updateLesson(lessonId, input)
       .then(response => {
-        context.commit('notLoading', null, { root: true });
         context.commit({ type: 'lessonUpdated', lesson: response.data });
         return response;
       }).catch(error => {
-        context.commit('notLoading', null, { root: true });
         alert(error.response.data);
         return Promise.reject(error);
-      });
+      }).finally(() => context.commit('setIsLoading', { isLoadingLessons: false }));
   },
   deleteLesson(context, lessonId) {
     const result = confirm('Delete this ?');
     if (result) {
-      context.commit('loading', null, { root: true });
+      context.commit('setIsLoading', { isLoadingLessons: true });
       LessonsService.deleteLesson(lessonId)
         .then((response) => {
-          context.commit('notLoading', null, { root: true });
           context.commit({ type: 'deleteLesson', lesson: response.data });
           return response;
         }).catch(error => {
-          context.commit('notLoading', null, { root: true });
           alert(error.response.data);
           return Promise.reject(error);
-        });
+        }).finally(() => context.commit('setIsLoading', { isLoadingLessons: false }));
     }
   }
 }
