@@ -5,6 +5,7 @@ const { mapState, mapActions, mapMutations } = createNamespacedHelpers(
   "wordsModule"
 );
 
+const lessonsModule = createNamespacedHelpers("lessonsModule");
 const tagsModule = createNamespacedHelpers("tagsModule");
 
 import { defaultWord, convertForms } from "@/models/word";
@@ -16,6 +17,7 @@ export default {
   }),
   computed: {
     ...mapState(["editingWord"]),
+    ...lessonsModule.mapState(["lessons"]),
     ...tagsModule.mapState(["tags"]),
     isVerb: function() {
       return (

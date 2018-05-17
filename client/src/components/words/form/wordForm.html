@@ -18,6 +18,11 @@
           <div class="form-group">
             <v-select placeholder="Word Types ..." multiple :options="tags" label="text" v-model="input.tags"></v-select>
           </div>
+          <div class="form-group">
+            <select class="form-control" v-model="input.lesson">
+              <option v-for="lesson in lessons" :value="lesson._id">{{lesson.bookName}}/{{lesson.index}}</option>
+            </select>
+          </div>
           <template v-if="isVerb">
             <div class="form-group">
               <select class="form-control" v-model="input.verbType">

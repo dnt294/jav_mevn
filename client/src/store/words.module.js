@@ -26,11 +26,17 @@ const mutations = {
     state.editingWord = payload;
   },
   wordCreated(state, payload) {
-    state.words.push(payload.word);
+    if (payload.word.lesson === state.selectingLessonId) {
+      state.words.push(payload.word);
+    }
   },
   wordUpdated(state, payload) {
-    const updatedWord = state.words.find(word => word._id === payload.word._id);
-    Object.assign(updatedWord, payload.word);
+    if (payload.word.lesson === state.selectingLessonId) {
+      const updatedWord = state.words.find(word => word._id === payload.word._id);
+      Object.assign(updatedWord, payload.word);
+    } else {
+      state.words.splice(state.words.findIndex(word => word._id === payload.word._id), 1);
+    }
     state.editingWord = null;
   },
   deleteWord(state, payload) {
@@ -64,8 +70,8 @@ const actions = {
   },
   createWord(context, input) {
     context.commit('setIsLoading', { isLoadingWords: true });
-    const params = Object.assign({}, input, { lesson: context.state.selectingLessonId });
-    WordsService.createWord(params)
+
+    WordsService.createWord(input)
       .then(response => {
         context.commit({ type: 'wordCreated', word: response.data });
       }).catch(error => {
@@ -97,7 +103,7 @@ const actions = {
 }
 
 const getters = {
-  inputForm: state => state.editingWord ? Object.assign({}, state.editingWord) : defaultWord
+  inputForm: state => state.editingWord ? Object.assign({}, state.editingWord) : { ...defaultWord, lesson: state.selectingLessonId }
 }
 
 export default {
