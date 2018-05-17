@@ -4,11 +4,15 @@ import typesModule from './wordsModule/types.module';
 
 const state = {
   words: [],
+  isLoadingWords: false,
   editingWord: null,
   selectingLessonId: null
 };
 
 const mutations = {
+  setIsLoading(state, payload) {
+    state.isLoadingWords = payload.isLoadingWords;
+  },
   setSelectingLessonId(state, payload) {
     state.selectingLessonId = payload.selectingLessonId;
   },
@@ -50,52 +54,44 @@ const actions = {
     context.dispatch('getWords');
   },
   getWords(context) {
-    context.commit('loading', null, { root: true });
+    context.commit('setIsLoading', { isLoadingWords: true });
     WordsService.getWords(context.state.selectingLessonId)
       .then((response) => {
-        context.commit('notLoading', null, { root: true });
         context.commit({ type: 'setWords', words: response.data });
       }).catch(error => {
-        context.commit('notLoading', null, { root: true });
         alert(error.response.data);
-      });
+      }).finally(() => context.commit('setIsLoading', { isLoadingWords: false }));
   },
   createWord(context, input) {
-    context.commit('loading', null, { root: true });
+    context.commit('setIsLoading', { isLoadingWords: true });
     const params = Object.assign({}, input, { lesson: context.state.selectingLessonId });
     WordsService.createWord(params)
       .then(response => {
-        context.commit('notLoading', null, { root: true });
         context.commit({ type: 'wordCreated', word: response.data });
       }).catch(error => {
-        context.commit('notLoading', null, { root: true });
         alert(error.response.data);
-      });
+      }).finally(() => context.commit('setIsLoading', { isLoadingWords: false }));
   },
   updateWord(context, input) {
-    context.commit('loading', null, { root: true });
+    context.commit('setIsLoading', { isLoadingWords: true });
     const wordId = context.state.editingWord._id;
     WordsService.updateWord(wordId, input)
       .then(response => {
-        context.commit('notLoading', null, { root: true });
         context.commit({ type: 'wordUpdated', word: response.data });
       }).catch(error => {
-        context.commit('notLoading', null, { root: true });
         alert(error.response.data);
-      });
+      }).finally(() => context.commit('setIsLoading', { isLoadingWords: false }));
   },
   deleteWord(context, wordId) {
     const result = confirm('Delete this ?');
     if (result) {
-      context.commit('loading', null, { root: true });
+      context.commit('setIsLoading', { isLoadingWords: true });
       WordsService.deleteWord(wordId)
         .then((response) => {
-          context.commit('notLoading', null, { root: true });
           context.commit({ type: 'deleteWord', word: response.data });
         }).catch(error => {
-          context.commit('notLoading', null, { root: true });
           alert(error.response.data);
-        });
+        }).finally(() => context.commit('setIsLoading', { isLoadingWords: false }));
     }
   }
 }

@@ -19,6 +19,10 @@
           </tbody>
         </table>
       </div>
+
+      <div class="overlay" v-if="isLoadingLessons">
+        <i class="fa fa-refresh fa-spin"></i>
+      </div>
     </div>
   </div>
 
@@ -71,6 +75,10 @@
       </div>
       <div class="box-footer">
         <a class="btn btn-info btn-flat pull-right" data-toggle="modal" data-target="#wordForm">Create New</a>
+      </div>
+
+      <div class="overlay" v-if="isLoadingWords">
+        <i class="fa fa-refresh fa-spin"></i>
       </div>
     </div>
   </div>
