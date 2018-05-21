@@ -1,0 +1,36 @@
+<div class="modal fade" tabindex="-1" role="dialog" id="searchModal">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>Hirakata</th>
+              <th>Kanji</th>
+              <th>意味</th>
+              <th>Note</th>
+              <th>Tags</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="word in searchResults">
+              <td class="big-cell-text oneline">{{word.hirakata}}</td>
+              <td class="big-cell-text oneline">{{word.kanji}}</td>
+              <td class="multiline">{{word.imi}}</td>
+              <td class="multiline">{{word.note}}</td>
+              <td>
+                <div v-if="word.tags">
+                  <tagBadge v-for="tag in word.tags" :type="tag.text" v-bind:key="tag._id"></tagBadge>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-default" type="button" data-dismiss="modal">Done</button>
+      </div>
+    </div>
+  </div>
+</div>

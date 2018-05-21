@@ -25,4 +25,7 @@ export const WordsService = {
   getElses() {
     return axios.get('words/elses');
   },
+  search(keyword) {
+    return axios.get(`words/search?keyword=${keyword}`);
+  },
 }

@@ -117,5 +117,14 @@ export const AdjsAggregation = [
   }
 ];
 
+export const searchFields = (keyword) => {
+  const regExp = new RegExp(keyword);
+  return {
+    $or: [
+      { hirakata: regExp },
+      { kanji: regExp }
+    ]
+  };
+};
 
 export default mongoose.model('Word', WordSchema);

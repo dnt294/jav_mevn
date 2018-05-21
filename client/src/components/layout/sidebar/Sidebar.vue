@@ -1,6 +1,14 @@
 <script>
+import { mapActions } from "vuex";
+
 export default {
-  name: 'Sidebar',
+  name: "Sidebar",
+  data: () => ({
+    searchKeyword: ""
+  }),
+  methods: {
+    ...mapActions(["search"])
+  }
 };
 </script>
 
