@@ -2,15 +2,15 @@ import axios from 'axios';
 
 export const TagsService = {
   getTags() {
-    return axios.get('tags');
+    return axios.get('api/tags');
   },
   createTag(tag) {
-    return axios.post(`tags`, tag);
+    return axios.post(`api/tags`, tag);
   },
   updateTag(tagId, tag) {
-    return axios.patch(`tags/${tagId}`, tag);
+    return axios.patch(`api/tags/${tagId}`, tag);
   },
   deleteTag(id) {
-    return axios.delete(`tags/${id}`);
+    return axios.delete(`api/tags/${id}`);
   },
 }

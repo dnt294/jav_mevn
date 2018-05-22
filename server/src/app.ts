@@ -11,7 +11,17 @@ app.use(morgan('combined'))
 app.use(cookieParser())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
-app.use(cors())
+app.use((req, res, next) => {
+  const allowedOrigins = ['http://localhost:8080', 'https://jav-mevn-client.firebaseapp.com'];
+  const origin = req.headers.origin;
+  if (allowedOrigins.indexOf(origin) > -1) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.header('Access-Control-Allow-Credentials', true);
+    return next();
+  }
+});
+
 
 import mongoose from 'mongoose';
 
@@ -34,6 +44,7 @@ import lessonRoutes from './routes/lessonRoutes';
 import wordRoutes from './routes/wordRoutes';
 import tagRoutes from './routes/tagRoutes';
 import authRoutes from './routes/authRoutes';
+import userRoutes from './routes/userRoutes';
 
 app.use('/api', authMiddleware);
 
@@ -41,6 +52,7 @@ app.use('/api/lessons', lessonRoutes);
 app.use('/api/words', wordRoutes);
 app.use('/api/tags', tagRoutes);
 app.use('/auth', authRoutes);
+app.use('/api/user', userRoutes);
 
 //Run app
 

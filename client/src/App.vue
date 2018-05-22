@@ -16,6 +16,9 @@ export default {
   name: "App",
   store,
   computed: mapState(["isLoading"]),
+  created() {
+    this.$store.dispatch("userCurrent");
+  },
   components: {
     Sidebar,
     Header,
