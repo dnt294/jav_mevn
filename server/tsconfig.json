@@ -24,6 +24,9 @@
       "@functions/*": [
         "src/functions/*"
       ],
+      "@libs/*": [
+        "src/libs/*"
+      ],
       "*": [
         "node_modules/*"
       ]

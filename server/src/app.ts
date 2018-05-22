@@ -1,5 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
 import cors from 'cors'
 import morgan from 'morgan'
 
@@ -7,6 +8,7 @@ require('dotenv').config()
 
 const app = express()
 app.use(morgan('combined'))
+app.use(cookieParser())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors())
@@ -26,13 +28,19 @@ db.once('open', function (callback) {
 
 // Routing
 
+import { authMiddleware } from './libs/auth';
+
 import lessonRoutes from './routes/lessonRoutes';
 import wordRoutes from './routes/wordRoutes';
 import tagRoutes from './routes/tagRoutes';
+import authRoutes from './routes/authRoutes';
 
-app.use('/lessons', lessonRoutes);
-app.use('/words', wordRoutes);
-app.use('/tags', tagRoutes);
+app.use('/api', authMiddleware);
+
+app.use('/api/lessons', lessonRoutes);
+app.use('/api/words', wordRoutes);
+app.use('/api/tags', tagRoutes);
+app.use('/auth', authRoutes);
 
 //Run app
 
