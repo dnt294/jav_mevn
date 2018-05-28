@@ -26,7 +26,7 @@ export function authMiddleware(req, res, next) {
       req.decodedToken = decodedToken;
       next();
     }).catch(error => {
-      return res.status(500).json({
+      return res.status(401).json({
         auth: false,
         message: 'Failed to authenticate token.'
       })
