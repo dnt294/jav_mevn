@@ -15,7 +15,7 @@ authRoutes.route('/register').post((req, res) => {
     if (err) { return res.status(500).send("Can not create user."); }
 
     const token = createJWTToken({ id: user.id, username: user.username });
-    res.status(201).cookie('token', token, { httpOnly: true, maxAge: maxAge * 1000 }).json({ auth: true, username: username });
+    res.status(201).cookie('token', token, { httpOnly: true, maxAge: maxAge }).json({ auth: true, username: username });
   });
 });
 
@@ -29,7 +29,7 @@ authRoutes.route('/login').post((req, res) => {
 
     const token = createJWTToken({ id: user.id, username: user.username });
 
-    res.cookie('token', token, { httpOnly: true, maxAge: maxAge * 1000 }).json({ auth: true, username: username });
+    res.cookie('token', token, { httpOnly: true, maxAge: maxAge }).json({ auth: true, username: username });
   });
 });
 
