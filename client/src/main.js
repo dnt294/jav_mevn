@@ -13,6 +13,7 @@ import { Focus } from './directives/directive.module';
 
 /** Config for axios  */
 axios.defaults.baseURL = process.env.BACKEND_ENDPOINT;
+axios.defaults.withCredentials = true;
 axios.interceptors.request.use(request => {
   console.log('start request: ', `${request.baseURL}/${request.url}`);
   return request;

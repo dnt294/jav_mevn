@@ -1,0 +1,58 @@
+<div class="row">
+  <div class="col-md-4">
+    <div v-if="isLoggedIn">
+      <h2>Hello {{currentUsername}}</h2>
+    </div>
+
+    <div class="nav-tabs-custom" v-else>
+
+      <ul class="nav nav-tabs">
+        <li class="active">
+          <a href="#tab_1" data-toggle="tab">Login</a>
+        </li>
+        <li>
+          <a href="#tab_2" data-toggle="tab">Register</a>
+        </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="tab_1">
+          <form class="form-horizontal">
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Username</label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" placeholder="Username ..." v-model.trim="input.username">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Password</label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" placeholder="Password ..." v-model.trim="input.password">
+              </div>
+            </div>
+          </form>
+          <button class="btn btn-info" v-on:click="login(input)">Login</button>
+        </div>
+
+        <div class="tab-pane" id="tab_2">
+          <form class="form-horizontal">
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Username</label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" placeholder="Username ..." v-model.trim="input.username">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label">Password</label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" placeholder="Password ..." v-model.trim="input.password">
+              </div>
+            </div>
+          </form>
+          <button class="btn btn-info" v-on:click="register(input)">Register</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
