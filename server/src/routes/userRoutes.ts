@@ -9,9 +9,7 @@ const userRoutes = express.Router();
 
 userRoutes.route('/current').get((req, res) => {
   UserSchema.findById(req.decodedToken['id'], (err, user) => {
-    if (err || !user) {
-      res.status(401).json({ message: `Can't find user` });
-    }
+    if (err || !user) { return res.status(401).json({ message: `Can't find user` }); }
 
     const { id, username } = user;
     res.json({ id: id, username: username });

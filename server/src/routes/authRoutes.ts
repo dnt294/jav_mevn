@@ -24,7 +24,7 @@ authRoutes.route('/login').post((req, res) => {
 
   UserSchema.findOne({ username: username }, (err, user) => {
     if (err || !user || !bcrypt.compareSync(password, user.password)) {
-      res.status(401).json({ message: 'Validation failed. Wrong username and password' });
+      return res.status(401).json({ message: 'Validation failed. Wrong username and password' });
     }
 
     const token = createJWTToken({ id: user.id, username: user.username });
