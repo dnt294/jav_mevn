@@ -68,7 +68,7 @@ wordRoutes.route('/elses').get((req, res) => {
 
 wordRoutes.route('/search').get((req, res) => {
   const keyword = req.query.keyword;
-  Word.find(searchFields(keyword)).exec((err, results) => {
+  Word.find(searchFields(keyword)).populate('lesson').exec((err, results) => {
     res.json(results);
   });
 });

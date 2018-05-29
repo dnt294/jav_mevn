@@ -5,6 +5,7 @@
         <table class="table table-bordered table-hover">
           <thead>
             <tr>
+              <th>Lesson</th>
               <th>Hirakata</th>
               <th>Kanji</th>
               <th>意味</th>
@@ -14,6 +15,7 @@
           </thead>
           <tbody>
             <tr v-for="word in searchResults">
+              <td class="oneline">{{word.lesson.bookName}}/{{word.lesson.index}}</td>
               <td class="big-cell-text oneline">{{word.hirakata}}</td>
               <td class="big-cell-text oneline">{{word.kanji}}</td>
               <td class="multiline">{{word.imi}}</td>
