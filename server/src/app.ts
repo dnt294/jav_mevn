@@ -11,17 +11,21 @@ app.use(morgan('combined'))
 app.use(cookieParser())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
-app.use((req, res, next) => {
-  const allowedOrigins = ['http://localhost:8080', 'https://jav-mevn-client.firebaseapp.com'];
-  const origin = req.headers.origin;
-  if (allowedOrigins.indexOf(origin) > -1) {
-    res.setHeader('Access-Control-Allow-Origin', origin);
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    res.header('Access-Control-Allow-Credentials', true);
-    return next();
-  }
-});
 
+const allowedOrigins = ['http://localhost:8080', 'https://jav-mevn-client.firebaseapp.com'];
+var corsOptions = {
+  origin: (origin, callback) => {
+    if (allowedOrigins.indexOf(origin) > -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ['GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Content-Length', 'Accept', 'X-Requested-With'],
+  credentials: true
+}
+app.use('*', cors(corsOptions));
 
 import mongoose from 'mongoose';
 
