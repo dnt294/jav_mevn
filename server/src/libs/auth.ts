@@ -4,7 +4,7 @@ export const maxAge = parseInt(process.env.TIMEOUT_AUTH_KEY);
 
 export function verifyJWTToken(token) {
   return new Promise((resolve, reject) => {
-    jwt.verify(token, process.env.MONGODB, (err, decodedToken) => {
+    jwt.verify(token, process.env.SECRET_AUTH_KEY, (err, decodedToken) => {
       if (err || !decodedToken) { return reject(err); }
       resolve(decodedToken);
     });
@@ -12,8 +12,8 @@ export function verifyJWTToken(token) {
 }
 
 export function createJWTToken(data) {
-  return jwt.sign(data, process.env.MONGODB, {
-    expiresIn: process.env.TIMEOUT_AUTH_KEY,
+  return jwt.sign(data, process.env.SECRET_AUTH_KEY, {
+    expiresIn: maxAge,
     algorithm: 'HS256',
   });
 }
