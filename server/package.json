@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=production node -r module-alias/register dist/app.js",
+    "postinstall": "npm run build",
     "dev": "nodemon",
     "start-dev": "node --inspect=5858 -r ts-node/register -r tsconfig-paths/register src/app.ts",
     "build": "rimraf dist && npm run build-ts",
