@@ -23,5 +23,10 @@
 
 ### Backend
 
+1. `git push heroku ``git subtree split --prefix server master``:master --force`
+
+old: deploy  to GCloud:
+```
 1. `npm run build`
 2. `gcloud app deploy`
+```
