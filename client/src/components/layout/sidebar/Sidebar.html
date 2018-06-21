@@ -1,8 +1,8 @@
 <aside class="main-sidebar">
   <section class="sidebar">
-    <form action="#" method="get" class="sidebar-form">
+    <form class="sidebar-form">
       <div class="input-group">
-        <input type="text" v-model="searchKeyword" class="form-control" placeholder="Search..." @keyup.enter="search(searchKeyword)">
+        <input type="text" v-model.trim="searchKeyword" class="form-control" placeholder="Search..." @keyup.enter="search(searchKeyword)">
         <span class="input-group-btn">
           <button type="button" class="btn btn-flat" v-on:click="search(searchKeyword)">
             <i class="fa fa-search"></i>
