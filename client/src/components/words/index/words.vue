@@ -23,7 +23,6 @@ export default {
       "editingWord",
       "selectingLessonId"
     ]),
-    ...lessonsModule.mapState(["lessons", "isLoadingLessons"])
   },
   components: {
     wordForm,
@@ -31,11 +30,9 @@ export default {
   },
   methods: {
     ...mapMutations(["editWord"]),
-    ...mapActions(["deleteWord", "changeLesson"])
+    ...mapActions(["deleteWord"])
   }
 };
 </script>
 
 <template src='./words.html'></template>
-
-<style scoped src='./words.scss'></style>
