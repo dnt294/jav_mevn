@@ -9,6 +9,7 @@ import store from "@/store/store";
 import Sidebar from "@/components/layout/sidebar/Sidebar";
 import Header from "@/components/layout/header/Header";
 import searchResults from "@/components/search/searchResults/searchResults";
+import rightSidebar from "@/components/layout/rightSidebar/rightSidebar";
 
 Vue.component("v-select", vSelect);
 
@@ -22,6 +23,7 @@ export default {
   components: {
     Sidebar,
     Header,
+    rightSidebar,
     searchResults,
     AtomSpinner
   }

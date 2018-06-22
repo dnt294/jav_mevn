@@ -1,0 +1,17 @@
+<aside class="control-sidebar control-sidebar-dark">
+  <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+    <li class="active">
+      <a href="#tab-lessons" data-toggle="tab" aria-expanded="true">
+        <i class="fa fa-wrench"></i>
+      </a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab-lessons">
+      <h4 class="control-sidebar-heading">Lesson</h4>
+      <p v-for="lesson in lessons" class="lesson-row"
+        v-on:click="changeLesson(lesson._id)"
+        v-bind:class="{'selected-row': lesson._id === selectingLessonId}">{{lesson.bookName}}/{{lesson.index}}</p>
+    </div>
+  </div>
+</aside>
