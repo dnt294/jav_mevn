@@ -9,9 +9,12 @@
   <div class="tab-content">
     <div class="tab-pane active" id="tab-lessons">
       <h4 class="control-sidebar-heading">Lesson</h4>
-      <p v-for="lesson in lessons" class="lesson-row"
-        v-on:click="changeLesson(lesson._id)"
-        v-bind:class="{'selected-row': lesson._id === selectingLessonId}">{{lesson.bookName}}/{{lesson.index}}</p>
+      <template v-for="book in sortedBooks">
+        <p v-for="lesson in book.lessons" class="lesson-row"
+          v-on:click="changeLesson(lesson._id)"
+          v-bind:class="{'selected-row': lesson._id === selectingLessonId}">{{lesson.bookName}}/{{lesson.index}}</p>
+        <hr/>
+      </template>
     </div>
   </div>
 </aside>

@@ -10,6 +10,7 @@ export default {
     ...wordsModule.mapState([
       "selectingLessonId",
     ]),
+    ...lessonsModule.mapGetters(["sortedBooks"]),
     ...lessonsModule.mapState(["lessons", "isLoadingLessons"])
   },
   methods: {

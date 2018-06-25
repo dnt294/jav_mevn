@@ -1,4 +1,5 @@
 import { LessonsService } from '@/services/api/lessons.service';
+var _ = require('lodash');
 
 const state = {
   lessons: [],
@@ -87,7 +88,13 @@ const actions = {
 }
 
 const getters = {
-  inputForm: state => state.editingLesson ? Object.assign({}, state.editingLesson) : { index: "", bookName: "" }
+  inputForm: state => state.editingLesson ? Object.assign({}, state.editingLesson) : { index: "", bookName: "" },
+  sortedBooks: state => {
+    if (state.lessons === []) { return []; }
+
+    const books = _.groupBy(state.lessons, 'bookName');
+    return Object.entries(books).map(([key, value]) => ({bookName: key, lessons: value}));
+  },
 }
 
 export default {
