@@ -1,5 +1,6 @@
 import { WordsService } from '@/services/api/words.service';
 import { defaultWord } from '@/models/word';
+import { popAlert } from '@/functions/alert';
 
 const state = {
   lessonsWithVerbs: [],
@@ -48,7 +49,7 @@ const actions = {
       .then((response) => {
         context.commit({ type: 'setVerbs', lessonsWithVerbs: response.data });
       }).catch(error => {
-        alert(error.response.data);
+        popAlert(this, error);
       }).finally(() => context.commit('setIsLoadingVerbs', { isLoadingVerbs: false }));
   },
   fetchSurus(context, refresh = false) {
@@ -59,7 +60,7 @@ const actions = {
       .then((response) => {
         context.commit({ type: 'setSurus', lessonsWithSurus: response.data });
       }).catch(error => {
-        alert(error.response.data);
+        popAlert(this, error);
       }).finally(() => context.commit('setIsLoadingSurus', { isLoadingSurus: false }));
   },
   fetchElses(context, refresh = false) {
@@ -70,7 +71,7 @@ const actions = {
       .then((response) => {
         context.commit({ type: 'setElses', lessonsWithElses: response.data });
       }).catch(error => {
-        alert(error.response.data);
+        popAlert(this, error);
       }).finally(() => context.commit('setIsLoadingElses', { isLoadingElses: false }));
   },
   fetchAdjs(context, refresh = false) {
@@ -81,7 +82,7 @@ const actions = {
       .then((response) => {
         context.commit({ type: 'setAdjs', lessonsWithAdjs: response.data });
       }).catch(error => {
-        alert(error.response.data);
+        popAlert(this, error);
       }).finally(() => context.commit('setIsLoadingAdjs', { isLoadingAdjs: false }));
   },
 }

@@ -3,6 +3,7 @@ import Vue from "vue";
 import { AtomSpinner } from "epic-spinners";
 import { mapState } from "vuex";
 import vSelect from "vue-select";
+import Notifications from "vue-notification";
 
 import store from "@/store/store";
 
@@ -12,6 +13,7 @@ import searchResults from "@/components/search/searchResults/searchResults";
 import rightSidebar from "@/components/layout/rightSidebar/rightSidebar";
 
 Vue.component("v-select", vSelect);
+Vue.use(Notifications);
 
 export default {
   name: "App",

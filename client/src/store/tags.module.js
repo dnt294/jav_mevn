@@ -1,4 +1,5 @@
 import { TagsService } from '@/services/api/tags.service';
+import { popAlert } from '@/functions/alert';
 
 const state = {
   tags: [],
@@ -42,7 +43,7 @@ const actions = {
         context.commit({ type: 'setTags', tags: response.data });
         return response;
       }).catch(error => {
-        alert(error.response.data);
+        popAlert(this, error);
         return Promise.reject(error);
       }).finally(() => context.commit('setIsLoading', { isLoadingTags: false }));
   },
@@ -53,7 +54,7 @@ const actions = {
         context.commit({ type: 'tagCreated', tag: response.data });
         return response;
       }).catch(error => {
-        alert(error.response.data);
+        popAlert(this, error);
         return Promise.reject(error);
       }).finally(() => context.commit('setIsLoading', { isLoadingTags: false }));
   },
@@ -66,7 +67,7 @@ const actions = {
         context.commit({ type: 'tagUpdated', tag: response.data });
         return response;
       }).catch(error => {
-        alert(error.response.data);
+        popAlert(this, error);
         return Promise.reject(error);
       }).finally(() => context.commit('setIsLoading', { isLoadingTags: false }));
   },
@@ -79,7 +80,7 @@ const actions = {
           context.commit({ type: 'deleteTag', tag: response.data });
           return response;
         }).catch(error => {
-          alert(error.response.data);
+          popAlert(this, error);
           return Promise.reject(error);
         }).finally(() => context.commit('setIsLoading', { isLoadingTags: false }));
     }

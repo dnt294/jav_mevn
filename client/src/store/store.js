@@ -68,7 +68,7 @@ const actions = {
         context.commit({ type: 'setCurrentUser', username: response.data.username });
         return response;
       }).catch(error => {
-        alert(error.response.data);
+        alert(error.response.data.message);
         return Promise.reject(error);
       }).finally(() => context.commit('setIsAuthenticating', { isAuthenticating: false }));
   },

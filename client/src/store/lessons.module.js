@@ -1,5 +1,6 @@
 import { LessonsService } from '@/services/api/lessons.service';
 var _ = require('lodash');
+import { popAlert } from '@/functions/alert';
 
 const state = {
   lessons: [],
@@ -43,7 +44,7 @@ const actions = {
         context.commit({ type: 'setLessons', lessons: response.data });
         return response;
       }).catch(error => {
-        alert(error.response.data);
+        popAlert(this, error);
         return Promise.reject(error);
       }).finally(() => context.commit('setIsLoading', { isLoadingLessons: false }));
   },
@@ -55,7 +56,7 @@ const actions = {
         context.commit({ type: 'lessonCreated', lesson: response.data });
         return response;
       }).catch(error => {
-        alert(error.response.data);
+        popAlert(this, error);
         return Promise.reject(error);
       }).finally(() => context.commit('setIsLoading', { isLoadingLessons: false }));
   },
@@ -67,7 +68,7 @@ const actions = {
         context.commit({ type: 'lessonUpdated', lesson: response.data });
         return response;
       }).catch(error => {
-        alert(error.response.data);
+        popAlert(this, error);
         return Promise.reject(error);
       }).finally(() => context.commit('setIsLoading', { isLoadingLessons: false }));
   },
@@ -80,7 +81,7 @@ const actions = {
           context.commit({ type: 'deleteLesson', lesson: response.data });
           return response;
         }).catch(error => {
-          alert(error.response.data);
+          popAlert(this, error);
           return Promise.reject(error);
         }).finally(() => context.commit('setIsLoading', { isLoadingLessons: false }));
     }

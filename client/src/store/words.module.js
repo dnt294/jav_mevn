@@ -1,6 +1,7 @@
 import { WordsService } from '@/services/api/words.service';
 import { defaultWord } from '@/models/word';
 import typesModule from './wordsModule/types.module';
+import { popAlert } from '@/functions/alert';
 
 const state = {
   words: [],
@@ -52,6 +53,7 @@ const actions = {
       if (context.rootState.lessonsModule.lessons.length === 0) { return; }
       context.dispatch('changeLesson', context.rootState.lessonsModule.lessons[0]._id);
     } catch (error) {
+      popAlert(this, error);
       return Promise.reject(error);
     }
   },
@@ -65,7 +67,7 @@ const actions = {
       .then((response) => {
         context.commit({ type: 'setWords', words: response.data });
       }).catch(error => {
-        alert(error.response.data);
+        popAlert(this, error);
       }).finally(() => context.commit('setIsLoading', { isLoadingWords: false }));
   },
   createWord(context, input) {
@@ -75,7 +77,7 @@ const actions = {
       .then(response => {
         context.commit({ type: 'wordCreated', word: response.data });
       }).catch(error => {
-        alert(error.response.data);
+        popAlert(this, error);
       }).finally(() => context.commit('setIsLoading', { isLoadingWords: false }));
   },
   updateWord(context, input) {
@@ -85,7 +87,7 @@ const actions = {
       .then(response => {
         context.commit({ type: 'wordUpdated', word: response.data });
       }).catch(error => {
-        alert(error.response.data);
+        popAlert(this, error);
       }).finally(() => context.commit('setIsLoading', { isLoadingWords: false }));
   },
   deleteWord(context, wordId) {
@@ -96,7 +98,7 @@ const actions = {
         .then((response) => {
           context.commit({ type: 'deleteWord', word: response.data });
         }).catch(error => {
-          alert(error.response.data);
+          popAlert(this, error);
         }).finally(() => context.commit('setIsLoading', { isLoadingWords: false }));
     }
   }
