@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
+import pingModule from './ping.module';
 import lessonsModule from './lessons.module';
 import wordsModule from './words.module';
 import tagsModule from './tags.module';
@@ -94,6 +95,7 @@ export default new Vuex.Store({
   actions,
   getters,
   modules: {
+    pingModule,
     lessonsModule,
     tagsModule,
     wordsModule,

@@ -4326,7 +4326,7 @@ lodash.uniq@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
 
-lodash@^4.0.0, lodash@^4.17.10, lodash@~4.17.4:
+lodash@^4.0.0, lodash@^4.16.4, lodash@^4.17.10, lodash@~4.17.4:
   version "4.17.10"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
 
@@ -7130,9 +7130,16 @@ vue-template-es2015-compiler@^1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.6.0.tgz#dc42697133302ce3017524356a6c61b7b69b4a18"
 
-vue@2.5.16, vue@^2.5.2:
+vue@2.5.16, vue@^2.5.2, vue@latest:
   version "2.5.16"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.16.tgz#07edb75e8412aaeed871ebafa99f4672584a0085"
+
+vuejs-count-down@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/vuejs-count-down/-/vuejs-count-down-0.0.5.tgz#9a2caa339010c94767ec0278bfda7ef986ee92d4"
+  dependencies:
+    lodash "^4.16.4"
+    vue latest
 
 vuex@^3.0.1:
   version "3.0.1"
