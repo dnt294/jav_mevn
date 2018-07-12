@@ -50,6 +50,10 @@ import tagRoutes from './routes/tagRoutes';
 import authRoutes from './routes/authRoutes';
 import userRoutes from './routes/userRoutes';
 
+app.get('/ping', (req, res) => {
+  res.json({ ping: 'ok' });
+});
+
 app.use('/api', authMiddleware);
 
 app.use('/api/lessons', lessonRoutes);
