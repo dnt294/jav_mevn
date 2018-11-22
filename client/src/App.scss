@@ -2,6 +2,60 @@
 @import "../node_modules/admin-lte/dist/css/AdminLTE.min.css";
 @import "../node_modules/admin-lte/dist/css/skins/_all-skins.css";
 
+/////////////
+
+$font-color: #8aa4af;
+$border-color: #000000;
+$background-color-content: #222d32;
+$background-color-box: #2c3b41;
+
+.content-wrapper {
+  background-color: #000000;
+}
+
+.box {
+  background-color: $background-color-content;
+
+  .box-header {
+    border-bottom: 1px solid $border-color;
+    color: white;
+
+    .fa {
+      color: $font-color;
+    }
+  }
+
+  .box-body {
+    background-color: $background-color-box;
+    color: $font-color;
+
+    table {
+      border: 0;
+    }
+
+    th {
+      color: white;
+    }
+
+    tr {
+      &:hover {
+        background-color: #1e282c;
+      }
+    }
+
+    th, td {
+      border: 1px solid $border-color;
+    }
+  }
+
+  .box-footer {
+    background-color: $background-color-content;
+    border-top: 0;
+  }
+}
+
+/////////////
+
 .spinner {
   position: absolute;
   top: 30%;

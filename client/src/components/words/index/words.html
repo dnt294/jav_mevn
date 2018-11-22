@@ -34,7 +34,7 @@
                   <tagBadge v-for="tag in word.tags" :type="tag.text" v-bind:key="tag._id"></tagBadge>
                 </div>
               </td>
-              <td style="display: flex;">
+              <td style="white-space: nowrap;">
                 <button class="btn btn-danger btn-flat" v-on:click="deleteWord(word._id)">
                   <i class="fa fa-trash"></i>
                 </button>
