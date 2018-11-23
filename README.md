@@ -22,7 +22,7 @@
 
 ### Backend
 
-1. `git push heroku ``git subtree split --prefix server master``:master --force`
+1. `git subtree push --prefix server heroku master`
 
 old: deploy  to GCloud:
 ```
