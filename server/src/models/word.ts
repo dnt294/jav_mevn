@@ -122,7 +122,8 @@ export const searchFields = (keyword) => {
   return {
     $or: [
       { hirakata: regExp },
-      { kanji: regExp }
+      { kanji: regExp },
+      { imi: regExp }
     ]
   };
 };
